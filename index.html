@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <link rel="apple-touch-icon" href="hyundai_logo_192.png">
   <meta charset="UTF-8">
   <title>Hyundai App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="hyundai_icon_ios_ready.png">
   <script>
     window.onload = () => {
       setTimeout(() => {
         window.location.href = "login.html";
-      }, 3000); // 3초 후 전환
+      }, 3000);
     };
   </script>
   <style>
@@ -24,7 +24,7 @@
     }
 
     .logo {
-      width: 130px;
+      width: 180px;
       opacity: 0;
       animation: fadeIn 1s ease-in forwards;
     }
@@ -37,6 +37,6 @@
   </style>
 </head>
 <body>
-  <img src="hyundai_logo_192.png" alt="Hyundai Logo" class="logo">
+  <img src="hyundai_icon_ios_ready.png" alt="Hyundai Logo" class="logo">
 </body>
 </html>
