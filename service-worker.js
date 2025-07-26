@@ -1,22 +1,7 @@
-self.addEventListener('install', function(event) {
-  event.waitUntil(
-    caches.open('hyundai-login-cache').then(function(cache) {
-      return cache.addAll([
-        '',
-        'index.html',
-        'login.html',
-        'hyundai_logo.png',
-        'manifest.json',
-        'service-worker.js'
-      ]);
-    })
-  );
+self.addEventListener("install", e => {
+  console.log("Service Worker 설치됨");
 });
 
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request).then(function(response) {
-      return response  fetch(event.request);
-    })
-  );
+self.addEventListener("fetch", e => {
+  // 캐싱 기능 등 필요 시 구현
 });
