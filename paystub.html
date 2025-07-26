@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>급여명세서</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: "Noto Sans KR", sans-serif;
+      margin: 0;
+      padding: 40px;
+      background-color: #fff;
+      color: #000;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      border: 1px solid #ccc;
+      padding: 30px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .header img {
+      height: 50px;
+    }
+    .title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+    .info-table td {
+      padding: 8px 12px;
+    }
+    .info-table td.label {
+      font-weight: bold;
+      background: #f2f2f2;
+      width: 120px;
+    }
+    .pay-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+    .pay-table th, .pay-table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .pay-table th {
+      background-color: #f7f7f7;
+    }
+    .total-row {
+      font-weight: bold;
+      background: #fafafa;
+    }
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="hyundai_logo.png" alt="현대자동차 로고" />
+      <div>지급일: 2025년 7월 25일</div>
+    </div>
+    <div class="title">급&nbsp;&nbsp;&nbsp;&nbsp;여&nbsp;&nbsp;&nbsp;&nbsp;명&nbsp;&nbsp;&nbsp;&nbsp;세&nbsp;&nbsp;&nbsp;&nbsp;서</div>
+
+    <table class="info-table">
+      <tr>
+        <td class="label">성명</td><td>백인헌</td>
+        <td class="label">부서</td><td>연구개발본부</td>
+      </tr>
+      <tr>
+        <td class="label">직급</td><td>연구원</td>
+        <td class="label">사번</td><td>2023090401</td>
+      </tr>
+      <tr>
+        <td class="label">지급년월</td><td colspan="3">2025년 7월</td>
+      </tr>
+    </table>
+
+    <table class="pay-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>항목</th>
+          <th>금액 (원)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>지급</td><td>기본급</td><td>4,500,000</td></tr>
+        <tr><td>지급</td><td>직책수당</td><td>60,000</td></tr>
+        <tr><td>지급</td><td>연구수당</td><td>100,000</td></tr>
+        <tr><td>지급</td><td>성과급(월)</td><td>120,000</td></tr>
+        <tr><td>공제</td><td>국민연금</td><td>202,500</td></tr>
+        <tr><td>공제</td><td>건강보험</td><td>157,500</td></tr>
+        <tr><td>공제</td><td>장기요양보험</td><td>20,180</td></tr>
+        <tr><td>공제</td><td>고용보험</td><td>40,500</td></tr>
+        <tr><td>공제</td><td>소득세</td><td>150,000</td></tr>
+        <tr><td>공제</td><td>지방소득세</td><td>15,000</td></tr>
+        <tr class="total-row"><td colspan="2">총지급액</td><td>4,780,000</td></tr>
+        <tr class="total-row"><td colspan="2">공제합계</td><td>585,680</td></tr>
+        <tr class="total-row"><td colspan="2">실수령액</td><td>4,194,320</td></tr>
+      </tbody>
+    </table>
+
+    <div class="footer">
+      본 급여명세서는 현대자동차(주)에서 발급되었으며, 내부용으로만 사용됩니다.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>현대자동차 사내포털</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f4f6f8;
+    }
+    header {
+      background-color: #003478;
+      color: white;
+      padding: 16px 30px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    footer {
+      background-color: #e9ecef;
+      text-align: center;
+      font-size: 12px;
+      color: #555;
+      padding: 12px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 30px;
+      padding-bottom: 80px;
+    }
+    .notice-box {
+      background: #ffffff;
+      border-left: 4px solid #0072c6;
+      padding: 16px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.05);
+    }
+    .notice-box a {
+      text-decoration: none;
+      color: #0072c6;
+      font-weight: bold;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .card {
+      flex: 1 1 calc(33.3% - 20px);
+      background: white;
+      padding: 24px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      min-width: 240px;
+      transition: 0.3s;
+    }
+    .card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .card a {
+      color: #333;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .card {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    HYUNDAI | 사내 포털 시스템
+  </header>
+
+  <div class="container">
+    <div class="notice-box">
+      📢 <a href="vacation_notice.html">[공지] 하계 휴가 안내 (7/28~8/1)</a>
+    </div>
+
+    <div class="cards">
+      <div class="card"><a href="certificate.html">📄 재직증명서 발급</a></div>
+      <div class="card"><a href="paystub.html">💰 급여명세서 조회</a></div>
+      <div class="card"><a href="training.html">📝 교육 이수 내역</a></div>
+      <div class="card"><a href="attendance.html">📆 근태 현황</a></div>
+      <div class="card"><a href="profile.html">📑 인사정보 조회</a></div>
+      <div class="card"><a href="welfare.html">🧾 복리후생 안내</a></div>
+      <div class="card"><a href="support.html">🛠 시스템 요청</a></div>
+      <div class="card"><a href="notices.html">📌 사내공지 모음</a></div>
+    </div>
+  </div>
+
+  <footer>
+    ⓒ Hyundai Motor Company. All rights reserved.
+  </footer>
+</body>
+</html>
