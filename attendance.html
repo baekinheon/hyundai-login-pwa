@@ -1,15 +1,113 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>근태 현황</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025년 10월 근태 현황</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      background-color: #f7f8f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      max-width: 480px;
+      margin: 40px auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 24px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+    .logo {
+      width: 110px;
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 18px;
+      color: #0a2a5e;
+      border-bottom: 2px solid #0a2a5e;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #d0d0d0;
+      padding: 10px;
+      text-align: center;
+      font-size: 15px;
+    }
+    th {
+      background-color: #f2f4f6;
+      color: #222;
+    }
+    td {
+      background-color: #fff;
+    }
+    .footer {
+      text-align: right;
+      color: #777;
+      font-size: 12px;
+      margin-top: 15px;
+    }
+
+    /* 모바일 대응 */
+    @media (max-width: 480px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+      th, td {
+        font-size: 14px;
+        padding: 8px;
+      }
+      h2 {
+        font-size: 17px;
+      }
+      .logo {
+        width: 90px;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: 'Noto Sans KR', sans-serif; padding: 40px;">
-  <h2>📆 2025년 10월 근태 현황</h2>
-  <ul>
-    <li>총 근무일수: 17일</li>
-    <li>출근일수: 2일</li>
-    <li>연차사용: 0일</li>
-    <li>지각/조퇴: 0회</li>
-  </ul>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Hyundai_Motor_Company_logo.svg" alt="Hyundai Logo" class="logo">
+    </div>
+
+    <h2>📆 2025년 10월 근태 현황</h2>
+
+    <table>
+      <tr>
+        <th>총 근무일수</th>
+        <th>출근일수</th>
+        <th>연차사용</th>
+        <th>지각/조퇴</th>
+      </tr>
+      <tr>
+        <td>17일</td>
+        <td>2일</td>
+        <td>0일</td>
+        <td>0회</td>
+      </tr>
+    </table>
+
+    <div class="footer">
+      ※ 본 자료는 인사시스템 기준으로 자동 산출된 정보입니다.
+    </div>
+  </div>
 </body>
 </html>
