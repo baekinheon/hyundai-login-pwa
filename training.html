@@ -1,23 +1,94 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>교육 이수 내역</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      background-color: #f7f8f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      max-width: 500px;
+      margin: 40px auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 28px;
+    }
+    h2 {
+      font-size: 20px;
+      color: #0a2a5e;
+      border-bottom: 2px solid #0a2a5e;
+      padding-bottom: 10px;
+      margin-bottom: 24px;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      background: #f9fafb;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      border: 1px solid #e1e4e8;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    li:nth-child(odd) {
+      background: #fefefe;
+    }
+    .footer {
+      text-align: right;
+      color: #777;
+      font-size: 12px;
+      margin-top: 20px;
+    }
+
+    /* 모바일 대응 */
+    @media (max-width: 480px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+      h2 {
+        font-size: 18px;
+      }
+      li {
+        font-size: 14px;
+        padding: 10px 12px;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: 'Noto Sans KR', sans-serif; padding: 40px;">
-  <h2>📝 교육 이수 내역</h2>
-  <ul>
-    <li>2025년 하반기 산업안전교육 - 수강 중</li>
-    <li>2025년 하반기 보안 점검 교육 - 예정 (8/20)</li>
-    <li>AI 기반 설계자동화 심화과정 - 신청 완료</li>
-    <li>친환경차 배터리 관리 교육 - 95점 / 이수</li>
-    <li>2025년 상반기 보안교육 - 이수 완료</li>
-    <li>2025년 전사윤리교육 - 이수 완료</li>
-    <li>R&D 구조해석 기초과정 - 92점 / 이수</li>
-    <li>2025년 하반기 윤리경영 온라인 교육 - 수강 중</li>
-    <li>2025년 연구개발본부 기술세미나 (AI 응용) - 이수 완료</li>
-    <li>현대자동차 품질의 이해 과정 - 88점 / 이수</li>
-    <li>직장 내 괴롭힘 예방교육 - 이수 완료</li>
-    <li>2025년 개인정보보호 실무교육 - 예정 (9/10)</li>
-  </ul>
+<body>
+  <div class="container">
+    <h2>교육 이수 내역</h2>
+    <ul>
+      <li>2025년 하반기 산업안전교육 - 수강 중</li>
+      <li>2025년 하반기 보안 점검 교육 - 예정 (8/20)</li>
+      <li>AI 기반 설계자동화 심화과정 - 신청 완료</li>
+      <li>친환경차 배터리 관리 교육 - 95점 / 이수</li>
+      <li>2025년 상반기 보안교육 - 이수 완료</li>
+      <li>2025년 전사윤리교육 - 이수 완료</li>
+      <li>R&D 구조해석 기초과정 - 92점 / 이수</li>
+      <li>2025년 하반기 윤리경영 온라인 교육 - 수강 중</li>
+      <li>2025년 연구개발본부 기술세미나 (AI 응용) - 이수 완료</li>
+      <li>현대자동차 품질의 이해 과정 - 88점 / 이수</li>
+      <li>직장 내 괴롭힘 예방교육 - 이수 완료</li>
+      <li>2025년 개인정보보호 실무교육 - 예정 (9/10)</li>
+    </ul>
+    <div class="footer">
+      ※ 본 자료는 인사시스템 기준으로 자동 산출된 정보입니다.
+    </div>
+  </div>
 </body>
 </html>
