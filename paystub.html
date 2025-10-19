@@ -5,127 +5,178 @@
   <title>급여명세서</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      font-family: "Noto Sans KR", sans-serif;
-      margin: 0;
-      padding: 40px;
-      background-color: #fff;
-      color: #000;
+    /* 기본 타이포 & 레이아웃 */
+    :root{
+      --border:#dcdcdc;
+      --bg:#ffffff;
+      --muted:#666;
+      --label:#f3f3f3;
     }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      border: 1px solid #ccc;
-      padding: 30px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; background:#f7f7f7; }
+    body{
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans KR", "Apple SD Gothic Neo", Roboto, "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color:#000;
+      line-height:1.5;
     }
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
+    .page{
+      max-width:840px;
+      margin:20px auto;
+      padding:16px;
     }
-    .header img {
-      height: 50px;
+    .sheet{
+      background:var(--bg);
+      border:1px solid var(--border);
+      border-radius:8px;
+      box-shadow:0 2px 8px rgba(0,0,0,.04);
+      padding:28px;
     }
-    .title {
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
+
+    /* 헤더 (로고 제거 버전) */
+    .header{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      margin-bottom:16px;
     }
-    .info-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 30px;
-      font-size: 15px;
+    .paydate{
+      font-size:14px;
+      color:#333;
+      white-space:nowrap; /* 지급일 줄바꿈 방지 */
     }
-    .info-table td {
-      padding: 8px 12px;
+
+    /* 제목 */
+    .title{
+      text-align:center;
+      font-weight:800;
+      letter-spacing:.12em;      /* CSS로만 간격 제어 */
+      font-size:26px;
+      margin:6px 0 20px;
     }
-    .info-table td.label {
-      font-weight: bold;
-      background: #f2f2f2;
-      width: 120px;
+
+    /* 인적정보 테이블 */
+    .info-table{
+      width:100%;
+      border-collapse:collapse;
+      margin-bottom:20px;
+      font-size:15px;
     }
-    .pay-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 30px;
-      font-size: 15px;
+    .info-table td{
+      padding:10px 12px;
+      border-bottom:1px solid var(--border);
     }
-    .pay-table th, .pay-table td {
-      border: 1px solid #ccc;
-      padding: 10px;
+    .info-table tr:last-child td{ border-bottom:none; }
+    .info-table td.label{
+      width:110px;
+      background:var(--label);
+      font-weight:700;
+      white-space:nowrap;        /* 라벨 줄바꿈 방지 */
     }
-    .pay-table th {
-      background-color: #f7f7f7;
+    .info-table td.value{
+      white-space:nowrap;        /* 값도 줄바꿈 최소화 */
     }
-    .total-row {
-      font-weight: bold;
-      background: #fafafa;
+
+    /* 급여 테이블 */
+    .pay-table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:15px;
     }
-    .footer {
-      text-align: center;
-      font-size: 13px;
-      color: #666;
-      margin-top: 40px;
+    .pay-table th, .pay-table td{
+      border:1px solid var(--border);
+      padding:10px 12px;
+    }
+    .pay-table th{
+      background:#fafafa;
+      font-weight:700;
+    }
+    .pay-table td.num{ text-align:right; font-variant-numeric: tabular-nums; }
+    .total-row{ font-weight:800; background:#fbfbfb; }
+
+    /* 푸터 */
+    .footer{
+      text-align:center;
+      font-size:12px;
+      color:var(--muted);
+      margin-top:26px;
+    }
+
+    /* 모바일 최적화 */
+    @media (max-width: 480px){
+      .page{ padding:8px; }
+      .sheet{ padding:18px; border-radius:10px; }
+      .title{ font-size:22px; letter-spacing:.1em; }
+      .paydate{ font-size:13px; }
+      .info-table{ font-size:14px; }
+      .info-table td{ padding:8px 10px; }
+      .info-table td.label{ width:88px; }
+      .pay-table{ font-size:14px; }
+      .pay-table th, .pay-table td{ padding:8px 10px; }
+    }
+
+    /* 아주 작은 화면(아이폰 SE 등) */
+    @media (max-width: 360px){
+      .title{ font-size:20px; letter-spacing:.08em; }
+      .info-table td.label{ width:76px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <img src="hyundai_logo.png" alt="현대자동차 로고" />
-      <div>지급일: 2025년 9월 25일</div>
-    </div>
-    <div class="title">급&nbsp;&nbsp;&nbsp;&nbsp;여&nbsp;&nbsp;&nbsp;&nbsp;명&nbsp;&nbsp;&nbsp;&nbsp;세&nbsp;&nbsp;&nbsp;&nbsp;서</div>
+  <main class="page">
+    <section class="sheet">
+      <div class="header">
+        <div class="paydate">지급일: 2025년 9월 25일</div>
+      </div>
 
-    <table class="info-table">
-      <tr>
-        <td class="label">성명</td><td>백인헌</td>
-        <td class="label">부서</td><td>연구개발본부</td>
-      </tr>
-      <tr>
-        <td class="label">직급</td><td>연구원</td>
-        <td class="label">사번</td><td>2022090401</td>
-      </tr>
-      <tr>
-        <td class="label">지급년월</td><td colspan="3">2025년 9월</td>
-      </tr>
-    </table>
+      <h1 class="title">급여명세서</h1>
 
-    <table class="pay-table">
-      <thead>
+      <table class="info-table" aria-label="기본 정보">
         <tr>
-          <th>구분</th>
-          <th>항목</th>
-          <th>금액 (원)</th>
+          <td class="label">성명</td><td class="value">백인헌</td>
+          <td class="label">부서</td><td class="value">연구개발본부</td>
         </tr>
-      </thead>
-      <tbody>
-        <tr><td>지급</td><td>기본급</td><td>4,500,000</td></tr>
-        <tr><td>지급</td><td>직책수당</td><td>60,000</td></tr>
-        <tr><td>지급</td><td>연구수당</td><td>100,000</td></tr>
-        <!-- 성과급만 조정 -->
-        <tr><td>지급</td><td>성과급(월)</td><td>1,225,680</td></tr>
+        <tr>
+          <td class="label">직급</td><td class="value">연구원</td>
+          <td class="label">사번</td><td class="value">2022090401</td>
+        </tr>
+        <tr>
+          <td class="label">지급년월</td><td class="value" colspan="3">2025년 9월</td>
+        </tr>
+      </table>
 
-        <tr><td>공제</td><td>국민연금</td><td>202,500</td></tr>
-        <tr><td>공제</td><td>건강보험</td><td>157,500</td></tr>
-        <tr><td>공제</td><td>장기요양보험</td><td>20,180</td></tr>
-        <tr><td>공제</td><td>고용보험</td><td>40,500</td></tr>
-        <tr><td>공제</td><td>소득세</td><td>150,000</td></tr>
-        <tr><td>공제</td><td>지방소득세</td><td>15,000</td></tr>
+      <table class="pay-table" aria-label="급여 내역">
+        <thead>
+          <tr>
+            <th scope="col" style="width:80px;">구분</th>
+            <th scope="col">항목</th>
+            <th scope="col" style="width:150px;">금액 (원)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>지급</td><td>기본급</td><td class="num">4,500,000</td></tr>
+          <tr><td>지급</td><td>직책수당</td><td class="num">60,000</td></tr>
+          <tr><td>지급</td><td>연구수당</td><td class="num">100,000</td></tr>
+          <!-- 성과급만 조정 -->
+          <tr><td>지급</td><td>성과급(월)</td><td class="num">1,225,680</td></tr>
 
-        <tr class="total-row"><td colspan="2">총지급액</td><td>5,885,680</td></tr>
-        <tr class="total-row"><td colspan="2">공제합계</td><td>585,680</td></tr>
-        <tr class="total-row"><td colspan="2">실수령액</td><td>5,300,000</td></tr>
-      </tbody>
-    </table>
+          <tr><td>공제</td><td>국민연금</td><td class="num">202,500</td></tr>
+          <tr><td>공제</td><td>건강보험</td><td class="num">157,500</td></tr>
+          <tr><td>공제</td><td>장기요양보험</td><td class="num">20,180</td></tr>
+          <tr><td>공제</td><td>고용보험</td><td class="num">40,500</td></tr>
+          <tr><td>공제</td><td>소득세</td><td class="num">150,000</td></tr>
+          <tr><td>공제</td><td>지방소득세</td><td class="num">15,000</td></tr>
 
-    <div class="footer">
-      본 급여명세서는 현대자동차(주)에서 발급되었으며, 내부용으로만 사용됩니다.
-    </div>
-  </div>
+          <tr class="total-row"><td colspan="2">총지급액</td><td class="num">5,885,680</td></tr>
+          <tr class="total-row"><td colspan="2">공제합계</td><td class="num">585,680</td></tr>
+          <tr class="total-row"><td colspan="2">실수령액</td><td class="num">5,300,000</td></tr>
+        </tbody>
+      </table>
+
+      <div class="footer">
+        본 급여명세서는 내부용으로만 사용됩니다.
+      </div>
+    </section>
+  </main>
 </body>
 </html>
