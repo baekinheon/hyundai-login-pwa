@@ -12,7 +12,7 @@
       --label:#f1f3f5;
       --muted:#6b7280;
       --ink:#0b0c0f;
-      --accent:#1f6feb; /* 은은한 포인트(로고 대신) */
+      --accent:#1f6feb;
     }
     *{ box-sizing:border-box; }
     html,body{ margin:0; padding:0; background:var(--page); }
@@ -22,7 +22,6 @@
       color:var(--ink);
       line-height:1.55;
       letter-spacing:0;
-      text-rendering:optimizeLegibility;
     }
 
     .page{ max-width:840px; margin:18px auto; padding:12px; }
@@ -34,7 +33,6 @@
       overflow:hidden;
     }
 
-    /* 상단 바 (로고 없음) */
     .appbar{
       display:flex; justify-content:flex-end; align-items:center;
       padding:14px 20px;
@@ -43,16 +41,14 @@
     }
     .paydate{ font-size:14px; color:#222; white-space:nowrap; }
 
-    /* 제목 */
     .title{
       margin:14px 20px 10px;
       text-align:center;
       font-weight:800;
-      letter-spacing:.08em;  /* 워드 문서처럼 살짝만 */
+      letter-spacing:.08em;
       font-size:26px;
     }
 
-    /* 인적 정보 카드형 테이블 */
     .info-wrap{ padding:4px 20px 18px; }
     .info{
       width:100%;
@@ -78,7 +74,6 @@
     }
     .info td.value{ white-space:nowrap; }
 
-    /* 급여 테이블 */
     .table-wrap{ padding:0 20px 22px; }
     .pay{
       width:100%;
@@ -95,17 +90,19 @@
     }
     .pay td.num{
       text-align:right;
-      font-variant-numeric:tabular-nums; /* 숫자 폭 일정 */
+      font-variant-numeric:tabular-nums;
       white-space:nowrap;
     }
     .pay tr:nth-child(even) td{ background:#fff; }
     .pay tr:nth-child(odd) td{ background:#fdfefe; }
+
+    /* 강조된 합계 3줄 */
     .pay .total-row td{
       background:#f7faff;
-      font-weight:800;
+      font-weight:900;
       border-top:2px solid #d9e3ff;
     }
-    .pay .total-row:last-of-type td{ background:#eef5ff; color:#0a3ea2; }
+    .pay .total-row:last-of-type td{ background:#eef5ff; color:#0a3ea2; font-size:17px; }
 
     .legend{
       padding:0 20px 18px;
@@ -113,7 +110,6 @@
       text-align:right;
     }
 
-    /* 모바일 최적화 */
     @media (max-width:480px){
       .page{ padding:8px; }
       .appbar{ padding:12px 14px; }
@@ -124,13 +120,14 @@
       .info td.label{ width:92px; }
       .pay{ font-size:14px; }
       .pay th, .pay td{ padding:9px 10px; }
+      .pay .total-row:last-of-type td{ font-size:16px; }
     }
+
     @media (max-width:360px){
       .title{ font-size:20px; letter-spacing:.05em; }
       .info td.label{ width:78px; }
     }
 
-    /* 인쇄 시도(선택) - 모바일 브라우저에서 PDF 저장 깔끔하게 */
     @media print{
       html,body{ background:#fff; }
       .page{ margin:0; padding:0; }
@@ -159,7 +156,7 @@
             <td class="label">사번</td><td class="value">2022090401</td>
           </tr>
           <tr>
-            <td class="label">지급년월</td><td class="value" colspan="3">2025년 9월</td>
+            <td class="label">지급년월</td><td class="value" colspan="3">2025년 10월</td>
           </tr>
         </table>
       </div>
