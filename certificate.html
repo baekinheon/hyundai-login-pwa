@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>재직증명서</title>
   <style>
-    /* A4 인쇄 최적화 */
     @page { size: A4; margin: 16mm; }
     html, body {
       margin: 0;
@@ -13,7 +12,6 @@
       -webkit-print-color-adjust: exact;
     }
 
-    /* 문서 컨테이너 */
     .certificate {
       width: 178mm;
       margin: 0 auto;
@@ -40,7 +38,7 @@
       margin-bottom: 18mm;
     }
     th, td {
-      border: 1px solid #dce1ea;   /* 미세 톤 조정 */
+      border: 1px solid #dce1ea;
       padding: 9px 11px;
       line-height: 1.45;
       text-align: left;
@@ -56,29 +54,31 @@
       text-align: center;
       font-weight: 700;
       line-height: 1.9;
+      position: relative;
+      display: inline-block;
+      margin-top: 10mm;
     }
 
-    /* 회사명 줄 */
     .corp {
-      letter-spacing: 0;           /* &nbsp;로 간격 주므로 0 */
-      margin-bottom: .5em;
+      letter-spacing: 0;
+      margin-bottom: .3em;
     }
 
-    /* 대표이사 줄 + 도장 같은 줄 배치 */
-    .ceo-line {
-      display: inline-flex;
-      align-items: baseline;       /* 글자 기준선 맞춤 */
-      gap: 12px;                   /* 10px → 12px */
-      margin-top: 6px;
+    .ceo {
+      display: inline-block;
+      position: relative;
     }
 
-    /* 도장 크기/보정 */
+    /* 도장 위치 조정: 대표이사 오른쪽 아래 겹치게 */
     .seal {
-      width: 20mm;                 /* 20mm 권장 */
+      position: absolute;
+      right: -25mm;   /* 오른쪽으로 약간 이동 */
+      bottom: -5mm;   /* 아래로 살짝 내려 */
+      width: 22mm;
       height: auto;
       opacity: .96;
-      transform: translateY(3px);  /* 2px → 3px, 살짝 더 내려 균형 */
       image-rendering: -webkit-optimize-contrast;
+      z-index: 0;     /* 글자 살짝 위쪽에 겹치도록 */
     }
 
     @media print {
@@ -99,20 +99,23 @@
       <tr><th>재직상태</th><td>재직</td></tr>
       <tr><th>입사일</th><td>2022년 09월 04일</td></tr>
       <tr><th>재직기간</th><td>2022년 09월 04일 ~ 현재 (3년 3개월)</td></tr>
+      <tr><th>용도</th><td>은행 제출용</td></tr>
     </table>
+
+    <div style="text-align:center; font-size:15px; margin-bottom:16mm;">
+      위의 내용이 사실과 다름이 없음을 증명합니다.<br>
+      <strong>2025년 12월 12일</strong>
+    </div>
 
     <div class="footer">
       <div class="corp">
         현&nbsp;&nbsp;대&nbsp;&nbsp;자&nbsp;&nbsp;동&nbsp;&nbsp;차&nbsp;&nbsp;주&nbsp;&nbsp;식&nbsp;&nbsp;회&nbsp;&nbsp;사
       </div>
-
-      <div class="ceo-line">
-        <span>대표이사&nbsp;&nbsp;호&nbsp;&nbsp;세&nbsp;&nbsp;무&nbsp;&nbsp;뇨&nbsp;&nbsp;스</span>
+      <div class="ceo">
+        대표이사&nbsp;&nbsp;호&nbsp;&nbsp;세&nbsp;&nbsp;무&nbsp;&nbsp;뇨&nbsp;&nbsp;스
         <img src="seal.png" class="seal" alt="직인">
       </div>
     </div>
   </div>
-
-  <p style="text-align:center; font-size:12.5px; color:#666; margin-top:8mm;"></p>
 </body>
 </html>
