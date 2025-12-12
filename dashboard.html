@@ -5,7 +5,7 @@
   <title>HYUNDAI | 사내 포털 대시보드</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- PWA용 아이콘(있으면 자동 사용됨) -->
+  <!-- PWA(있을 때만 사용) -->
   <link rel="icon" href="hyundai_logo_192.png" />
   <link rel="apple-touch-icon" href="hyundai_logo_192.png" />
   <link rel="manifest" href="manifest.json" />
@@ -109,30 +109,13 @@
 
   <main class="container" role="main">
     <nav class="cards" aria-label="주요 서비스">
-      <!-- 스크린샷에 있는 실제 파일명으로 연결 -->
-      <a class="card" href="certificate.html"      target="_self">재직증명서 발급</a>
-      <a class="card" href="paystub.html"          target="_self">급여명세서 조회</a>
-      <a class="card" href="training.html"         target="_self">교육 이수 내역</a>
-      <a class="card" href="attendance.html"       target="_self">근태 현황</a>
+      <!-- 실제 파일로 연결 (버전 파라미터는 스크립트에서 자동 추가) -->
+      <a class="card" data-href="certificate.html">재직증명서 발급</a>
+      <a class="card" data-href="paystub.html">급여명세서 조회</a>
+      <a class="card" data-href="training.html">교육 이수 내역</a>
+      <a class="card" data-href="attendance.html">근태 현황</a>
 
-      <a class="card" href="profile.html"          target="_self">인사정보 조회</a>
-      <a class="card" href="welfare.html"          target="_self">복리후생 안내</a>
-      <a class="card" href="support.html"          target="_self">시스템 요청</a>
-      <a class="card" href="notices.html"          target="_self">사내공지 모음</a>
-
-      <!-- 선택 항목(있으면 노출) -->
-      <a class="card" href="vacation_notice.html"  target="_self">휴가/공지 안내</a>
-      <a class="card" href="dashboard.html"        target="_self">대시보드(요약)</a>
-    </nav>
-  </main>
-
-  <footer>ⓒ Hyundai Motor Company. All rights reserved.</footer>
-
-  <script>
-    // 서비스워커 캐시로 갱신이 안 되는 이슈가 있으면 아래 주석 해제 후 사용하세요.
-    // if ('serviceWorker' in navigator) {
-    //   navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
-    // }
-  </script>
-</body>
-</html>
+      <a class="card" data-href="profile.html">인사정보 조회</a>
+      <a class="card" data-href="welfare.html">복리후생 안내</a>
+      <a class="card" data-href="support.html">시스템 요청</a>
+      <a class="card" data-href="notices.html">사내공지
