@@ -22,11 +22,12 @@
       position: relative;
     }
 
+    /* HYUNDAI 로고 - 미세 확대 & 위치 보정 */
     .logo {
       position: absolute;
-      top: 18mm;
-      right: 20mm;
-      width: 115px;
+      top: 17mm;      /* 살짝 위로 */
+      right: 20mm;    /* 여백 유지 */
+      width: 140px;   /* 115px → 140px */
       opacity: .96;
     }
 
@@ -65,7 +66,6 @@
       margin-top: 12mm;
       margin-bottom: 4mm;
     }
-
     .date {
       text-align: center;
       font-weight: 700;
@@ -73,13 +73,13 @@
       margin-bottom: 14mm;
     }
 
+    /* 하단 회사명/대표이사 + 직인 */
     .footer {
       text-align: center;
       font-weight: 700;
       line-height: 1.9;
       position: relative;
     }
-
     .corp { margin-bottom: .5em; }
     .ceo-line { display: inline-block; position: relative; }
 
@@ -88,11 +88,13 @@
       right: -78px;
       top: -14px;
       width: 78px;
-      opacity: 0.9;
+      opacity: 0.9;  /* 글자 가리지 않도록 */
       image-rendering: -webkit-optimize-contrast;
     }
 
-    @media print { .certificate { border: none; } }
+    @media print {
+      .certificate { border: none; }
+    }
   </style>
 </head>
 <body>
@@ -115,7 +117,6 @@
     </table>
 
     <div class="confirm">위의 내용이 사실과 다름이 없음을 증명합니다.</div>
-
     <div class="date" id="today"></div>
 
     <div class="footer">
@@ -128,21 +129,18 @@
   </div>
 
   <script>
-    // 발급일 자동 표기
+    // 발급일 자동
     const today = new Date();
-    const formatted = `${today.getFullYear()}년 ${String(today.getMonth()+1).padStart(2,'0')}월 ${String(today.getDate()).padStart(2,'0')}일`;
-    document.getElementById('today').innerText = formatted;
+    const y = today.getFullYear();
+    const m = String(today.getMonth()+1).padStart(2,'0');
+    const d = String(today.getDate()).padStart(2,'0');
+    document.getElementById('today').innerText = `${y}년 ${m}월 ${d}일`;
 
-    // 재직기간 자동 계산
-    const joinDate = new Date(2022, 8, 4); // 2022년 9월 4일 (month는 0부터 시작)
-    let years = today.getFullYear() - joinDate.getFullYear();
+    // 재직기간 자동 계산 (입사일 고정)
+    const joinDate = new Date(2022, 8, 4); // 2022-09-04 (month 0기반)
+    let years = y - joinDate.getFullYear();
     let months = today.getMonth() - joinDate.getMonth();
-
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
-
+    if (months < 0) { years--; months += 12; }
     document.getElementById('work-period').innerText =
       `2022년 09월 04일 ~ 현재 (${years}년 ${months}개월)`;
   </script>
