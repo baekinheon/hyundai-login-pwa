@@ -12,12 +12,12 @@
       --label:#f1f3f5;
       --muted:#6b7280;
       --ink:#0b0c0f;
-      --accent:#004ea2; /* HYUNDAI BLUE */
+      --accent:#004ea2; /* 현대 블루 톤 */
     }
     *{ box-sizing:border-box; }
     html,body{ margin:0; padding:0; background:var(--page); }
     body{
-      font-family:-apple-system, BlinkMacSystemFont,"Noto Sans KR","Apple SD Gothic Neo",Roboto,"Segoe UI",Arial,sans-serif;
+      font-family:-apple-system, BlinkMacSystemFont, "Noto Sans KR", "Apple SD Gothic Neo", Roboto, "Segoe UI", Arial, sans-serif;
       -webkit-font-smoothing:antialiased;
       color:var(--ink);
       line-height:1.55;
@@ -30,26 +30,18 @@
       border-radius:12px;
       box-shadow:0 6px 24px rgba(12,18,28,.06);
       overflow:hidden;
-      position:relative;
     }
 
-    /* 상단 바: 왼쪽 지급일, 오른쪽 로고/문구 */
     .appbar{
       display:flex; justify-content:space-between; align-items:center;
       padding:14px 20px;
       border-bottom:1px solid var(--border);
-      background:linear-gradient(180deg,#fff,#fafbfc);
+      background:linear-gradient(180deg, #fff, #fafbfc);
     }
-    .paydate{ font-size:14px; color:#222; white-space:nowrap; }
-
-    .logo-area{ display:flex; align-items:center; gap:8px; }
-    .logo{ width:115px; height:auto; }
-    .logo-text{ display:none; font-weight:700; font-size:15px; color:var(--accent); }
-
-    /* 모바일에선 로고 대신 텍스트 */
-    @media (max-width:600px){
-      .logo{ display:none; }
-      .logo-text{ display:inline; }
+    .paydate{ font-size:14px; color:#222; }
+    .logo{
+      width:110px;
+      opacity:0.9;
     }
 
     .title{
@@ -63,41 +55,62 @@
     .info-wrap{ padding:4px 20px 18px; }
     .info{
       width:100%;
-      border-collapse:separate; border-spacing:0;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
       border:1px solid var(--border);
-      border-radius:10px; overflow:hidden; background:#fff;
+      border-radius:10px;
+      background:#fff;
     }
     .info td{
-      padding:12px 14px; border-bottom:1px solid var(--border);
-      vertical-align:middle; font-size:15px;
+      padding:12px 14px;
+      border-bottom:1px solid var(--border);
+      vertical-align:middle;
+      font-size:15px;
     }
     .info tr:last-child td{ border-bottom:0; }
     .info td.label{
-      width:112px; background:var(--label); font-weight:700; white-space:nowrap;
+      width:112px;
+      background:var(--label);
+      font-weight:700;
+      white-space:nowrap;
     }
-    .info td.value{ white-space:nowrap; }
 
     .table-wrap{ padding:0 20px 22px; }
     .pay{
-      width:100%; border-collapse:collapse;
-      border:1px solid var(--border); border-radius:10px; overflow:hidden; font-size:15px;
+      width:100%;
+      border-collapse:collapse;
+      border:1px solid var(--border);
+      border-radius:10px;
+      overflow:hidden;
+      font-size:15px;
     }
     .pay th, .pay td{ border:1px solid var(--border); padding:11px 12px; }
-    .pay th{ background:#fafbfc; font-weight:700; }
-    .pay td.num{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
-    .pay tr:nth-child(even) td{ background:#fff; }
-    .pay tr:nth-child(odd)  td{ background:#fdfefe; }
+    .pay th{
+      background:#fafbfc;
+      font-weight:700;
+    }
+    .pay td.num{
+      text-align:right;
+      font-variant-numeric:tabular-nums;
+      white-space:nowrap;
+    }
 
-    /* 합계 강조 */
     .pay .total-row td{
-      background:#f7faff; font-weight:900; border-top:2px solid #d9e3ff;
+      background:#f7faff;
+      font-weight:900;
+      border-top:2px solid #d9e3ff;
     }
     .pay .total-row:last-of-type td{
-      background:#eef5ff; color:var(--accent); font-size:17px;
+      background:#eef5ff;
+      color:var(--accent);
+      font-size:17px;
     }
 
     .legend{
-      padding:0 20px 18px; font-size:12px; color:var(--muted); text-align:right;
+      padding:0 20px 18px;
+      font-size:12px; color:var(--muted);
+      text-align:right;
     }
 
     @media (max-width:480px){
@@ -117,7 +130,6 @@
       html,body{ background:#fff; }
       .page{ margin:0; padding:0; }
       .sheet{ border:none; box-shadow:none; border-radius:0; }
-      .title{ letter-spacing:.06em; }
     }
   </style>
 </head>
@@ -125,11 +137,8 @@
   <div class="page">
     <section class="sheet" role="document" aria-label="급여명세서">
       <header class="appbar">
-        <div class="paydate" id="payDate">지급일:</div>
-        <div class="logo-area">
-          <img src="hyundai_logo.png" alt="HYUNDAI 로고" class="logo">
-          <span class="logo-text">현대자동차(주)</span>
-        </div>
+        <div class="paydate" id="pay-date"></div>
+        <img src="hyundai_logo.png" class="logo" alt="HYUNDAI">
       </header>
 
       <h1 class="title">급여명세서</h1>
@@ -137,15 +146,15 @@
       <div class="info-wrap">
         <table class="info" aria-label="기본 정보">
           <tr>
-            <td class="label">성명</td><td class="value">백인헌</td>
-            <td class="label">부서</td><td class="value">연구개발본부</td>
+            <td class="label">성명</td><td>백인헌</td>
+            <td class="label">부서</td><td>연구개발본부</td>
           </tr>
           <tr>
-            <td class="label">직급</td><td class="value">연구원</td>
-            <td class="label">사번</td><td class="value">2022090012</td>
+            <td class="label">직급</td><td>연구원</td>
+            <td class="label">사번</td><td>2022090012</td>
           </tr>
           <tr>
-            <td class="label">지급년월</td><td class="value" colspan="3" id="payMonth">—</td>
+            <td class="label">지급년월</td><td colspan="3" id="pay-month"></td>
           </tr>
         </table>
       </div>
@@ -163,7 +172,7 @@
             <tr><td>지급</td><td>기본급</td><td class="num">4,500,000</td></tr>
             <tr><td>지급</td><td>직책수당</td><td class="num">60,000</td></tr>
             <tr><td>지급</td><td>연구수당</td><td class="num">100,000</td></tr>
-            <tr><td>지급</td><td>성과급(월)</td><td class="num">1,225,680</td></tr>
+            <tr><td>지급</td><td>성과급(월)</td><td class="num">700,000</td></tr>
 
             <tr><td>공제</td><td>국민연금</td><td class="num">202,500</td></tr>
             <tr><td>공제</td><td>건강보험</td><td class="num">157,500</td></tr>
@@ -171,10 +180,12 @@
             <tr><td>공제</td><td>고용보험</td><td class="num">40,500</td></tr>
             <tr><td>공제</td><td>소득세</td><td class="num">150,000</td></tr>
             <tr><td>공제</td><td>지방소득세</td><td class="num">15,000</td></tr>
+            <tr><td>공제</td><td>노조비</td><td class="num">20,000</td></tr>
+            <tr><td>공제</td><td>사내근로복지기금</td><td class="num">10,000</td></tr>
 
-            <tr class="total-row"><td colspan="2">총지급액</td><td class="num">5,885,680</td></tr>
-            <tr class="total-row"><td colspan="2">공제합계</td><td class="num">585,680</td></tr>
-            <tr class="total-row"><td colspan="2">실수령액</td><td class="num">5,300,000</td></tr>
+            <tr class="total-row"><td colspan="2">총지급액</td><td class="num">5,360,000</td></tr>
+            <tr class="total-row"><td colspan="2">공제합계</td><td class="num">615,680</td></tr>
+            <tr class="total-row"><td colspan="2">실수령액</td><td class="num">4,744,320</td></tr>
           </tbody>
         </table>
       </div>
@@ -184,21 +195,15 @@
   </div>
 
   <script>
-    // 이번 달 25일을 지급일로 표시
-    (function () {
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(1, '0'); // 1~12
-      const monthPad2 = String(now.getMonth() + 1).padStart(2, '0'); // 01~12
+    // 자동 지급일 & 지급년월 표시
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const payDate = `${year}년 ${month}월 25일`;
+    const payMonth = `${year}년 ${month}월`;
 
-      // 지급일: 이번 달 25일
-      document.getElementById('payDate').innerText =
-        `지급일: ${year}년 ${month}월 25일`;
-
-      // 지급년월: 이번 달
-      document.getElementById('payMonth').innerText =
-        `${year}년 ${monthPad2}월`;
-    })();
+    document.getElementById("pay-date").textContent = `지급일: ${payDate}`;
+    document.getElementById("pay-month").textContent = payMonth;
   </script>
 </body>
 </html>
