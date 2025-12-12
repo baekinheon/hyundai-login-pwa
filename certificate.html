@@ -1,103 +1,101 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>재직증명서</title>
-  <style>
-    body {
-      font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-      background: #ffffff;
-      margin: 0;
-      padding: 60px;
-    }
-    .certificate {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 50px 40px 70px 40px;
-      background: white;
-      border: 1px solid #ccc;
-      box-shadow: 0 0 8px rgba(0,0,0,0.05);
-      position: relative;
-    }
-    .title {
-      text-align: center;
-      font-size: 26px;
-      font-weight: bold;
-      margin-bottom: 40px;
-      letter-spacing: 0.4em;
-      white-space: nowrap;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 16px;
-      margin-bottom: 50px;
-    }
-    table th, table td {
-      border: 1px solid #aaa;
-      padding: 12px;
-      text-align: left;
-    }
-    table th {
-      background-color: #f9f9f9;
-      width: 150px;
-      font-weight: normal;
-    }
-    .footer {
-      text-align: center;
-      font-size: 16px;
-      line-height: 1.8;
-      font-weight: bold;
-      white-space: pre-line;
-    }
-
-    /* 대표이사 줄과 직인을 한 줄로 정렬 */
-    .ceo-line {
-      display: inline-flex;
-      align-items: flex-end;   /* 글자 기준선보다 도장이 살짝 아래로 */
-      gap: 14px;               /* 글자-도장 간격 */
-      margin-top: 6px;
-    }
-
-    .logo {
-      position: absolute;
-      top: 30px;
-      right: 40px;
-      width: 160px;
-    }
-    .seal {
-      position: static;        /* 절대배치 제거 */
-      width: 86px;             /* 80~90px 권장 */
-      opacity: 0.96;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>재직증명서</title>
+    <style>
+        body {
+            font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+            background: #ffffff;
+            margin: 0;
+            padding: 60px;
+        }
+        .certificate {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 50px 40px 70px 40px;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 8px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .title {
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            letter-spacing: 0.4em;
+            white-space: nowrap;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+            margin-bottom: 50px;
+        }
+        table th, table td {
+            border: 1px solid #aaa;
+            padding: 12px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f9f9f9;
+            width: 150px;
+            font-weight: normal;
+        }
+        .footer {
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.8;
+            font-weight: bold;
+            white-space: pre-line;
+        }
+        .logo {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            width: 160px;
+        }
+        .seal {
+            position: absolute;
+            bottom: 55px;
+            right: 40px; 
+            width: 90px;   
+            opacity:  0.96;
+        }
+    </style>
 </head>
 <body>
-  <div class="certificate">
-    <img src="hyundai_logo.png" class="logo" alt="로고">
-    <div class="title">재&nbsp;&nbsp;직&nbsp;&nbsp;증&nbsp;&nbsp;명&nbsp;&nbsp;서</div>
-    <table>
-      <tr><th>성명</th><td>백인헌</td></tr>
-      <tr><th>생년월일</th><td>1996년 06월 15일</td></tr>
-      <tr><th>소속</th><td>연구개발본부</td></tr>
-      <tr><th>직위</th><td>연구원</td></tr>
-      <tr><th>직무</th><td>차체 구조 설계</td></tr>
-      <tr><th>재직상태</th><td>재직</td></tr>
-      <tr><th>입사일</th><td>2022년 09월 04일</td></tr>
-      <tr><th>재직기간</th><td>2022년 09월 04일 ~ 현재 (3년 3개월)</td></tr>
-    </table>
+    <div class="certificate">
+        <img src="hyundai_logo.png" class="logo" alt="현대자동차 로고">
+        <div class="title">재&nbsp;&nbsp;직&nbsp;&nbsp;증&nbsp;&nbsp;명&nbsp;&nbsp;서</div>
+        <table>
+            <tr><th>성명</th><td>백인헌</td></tr>
+            <tr><th>생년월일</th><td>1996년 06월 15일</td></tr>
+            <tr><th>소속</th><td>연구개발본부</td></tr>
+            <tr><th>직위</th><td>연구원</td></tr>
+            <tr><th>직무</th><td>차체 구조 설계</td></tr>
+            <tr><th>재직상태</th><td>재직</td></tr>
+            <tr><th>입사일</th><td>2022년 09월 04일</td></tr>
+            <tr><th>재직기간</th><td>2022년 09월 04일 ~ 현재 (3년 3개월)</td></tr>
+        </table>
+        <div class="footer">
+현&nbsp;&nbsp;&nbsp;&nbsp;대&nbsp;&nbsp;&nbsp;&nbsp;자&nbsp;&nbsp;&nbsp;&nbsp;동&nbsp;&nbsp;&nbsp;&nbsp;차&nbsp;&nbsp;&nbsp;&nbsp;주&nbsp;&nbsp;&nbsp;&nbsp;식&nbsp;&nbsp;&nbsp;&nbsp;회&nbsp;&nbsp;&nbsp;&nbsp;사<br>
+<span>대표이사&nbsp;&nbsp;호&nbsp;&nbsp;세&nbsp;&nbsp;무&nbsp;&nbsp;뇨&nbsp;&nbsp;스</span>
 
-    <div class="footer">
-      현&nbsp;&nbsp;&nbsp;대&nbsp;&nbsp;&nbsp;자&nbsp;&nbsp;&nbsp;동&nbsp;&nbsp;&nbsp;차&nbsp;&nbsp;&nbsp;주&nbsp;&nbsp;&nbsp;식&nbsp;&nbsp;&nbsp;회&nbsp;&nbsp;&nbsp;사<br>
-      <div class="ceo-line">
-        <span>대표이사&nbsp;&nbsp;호&nbsp;&nbsp;세&nbsp;&nbsp;무&nbsp;&nbsp;뇨&nbsp;&nbsp;스</span>
+        </div>
         <img src="seal.png" class="seal" alt="직인">
-      </div>
     </div>
-  </div>
 
-  <p class="notice" style="font-size:14px;color:#555;text-align:center;margin-top:16px;">
-   
-  </p>
+<p class="notice"></p>
+<style>
+.notice {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-top: 16px;
+}
+</style>
+
 </body>
 </html>
