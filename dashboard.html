@@ -11,52 +11,38 @@
       --line:#e3e7ee;
       --ink:#0b1320;
       --muted:#5b6675;
-      --brand:#002c5f;   /* 현대 CI 블루 */
-      --brand-2:#0b57d0; /* 보조 포커스 색 */
+      --brand:#002c5f;
+      --brand-2:#0b57d0;
     }
 
-    /* reset-ish */
     *{ box-sizing:border-box; }
     html,body{ margin:0; padding:0; background:var(--bg); color:var(--ink); }
     body{ font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Apple SD Gothic Neo",Segoe UI,Roboto,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
 
-    /* header */
     header{
       background:var(--brand);
       color:#fff;
-      padding:0 24px;
+      padding:12px 24px;
     }
     .brand{
       max-width:1160px; margin:0 auto;
-      display:flex; align-items:center; gap:12px;
-      min-height:56px;               /* 헤더 높이 고정으로 수직 정렬 안정화 */
+      display:flex; align-items:center; gap:10px;
+      min-height:48px;
+      font-weight:600; font-size:16px; letter-spacing:.02em;
     }
-    /* 왼쪽 흰색 로고 박스 (실내 포털 느낌) */
-    .logo-box{
-      display:inline-flex; align-items:center; justify-content:center;
-      height:28px; padding:0 10px;
-      background:#fff; color:#001b3c;
-      border-radius:6px;
-      box-shadow:0 1px 0 rgba(255,255,255,.3), inset 0 0 0 1px rgba(0,0,0,.06);
-      font-weight:700; letter-spacing:.12em; font-size:12px;
-      text-transform:uppercase;
-      line-height:1;
+    .brand img{
+      height:22px; width:auto; display:block;
+      opacity:.95;
     }
-    .logo-box img{
-      height:14px; width:auto; display:block;
-    }
-    /* 타이틀 */
-    .brand-title{
-      font-weight:600; letter-spacing:.02em; font-size:16px;
-      opacity:.98;
+    .brand span{
+      position:relative;
+      top:1px;
     }
 
-    /* layout */
     .container{
       max-width:1160px; margin:0 auto; padding:28px 24px 96px;
     }
 
-    /* cards grid */
     .cards{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
@@ -87,64 +73,35 @@
       outline-offset:2px;
     }
 
-    /* footer */
     footer{
       position:fixed; left:0; right:0; bottom:0;
       background:#edf0f4; color:#556070;
       border-top:1px solid var(--line);
       font-size:12px; text-align:center; padding:10px 12px;
     }
-
-    /* motion preference */
-    @media (prefers-reduced-motion: reduce){
-      .card{ transition:none; }
-    }
-
-    /* 작은 화면에서 헤더 타이틀 크기 조정 */
-    @media (max-width:480px){
-      .brand{ gap:10px; min-height:52px; }
-      .brand-title{ font-size:15px; }
-    }
   </style>
 </head>
 <body>
-  <header role="banner" aria-label="상단 헤더">
+  <header>
     <div class="brand">
-      <span class="logo-box">
-        <!-- 이미지가 있으면 사용, 없으면 텍스트 HYUNDAI가 보임 -->
-        <img src="hyundai_logo.png" alt="HYUNDAI" onerror="this.style.display='none'">
-        <span class="logo-fallback" style="display:none;">HYUNDAI</span>
-      </span>
-      <span class="brand-title">사내 포털 시스템</span>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Hyundai_Motor_Company_logo.svg" alt="Hyundai Motor Company">
+      <span>사내 포털 시스템</span>
     </div>
   </header>
 
-  <main class="container" role="main">
-    <nav class="cards" aria-label="주요 서비스">
-      <a class="card" href="certificate.html">재직증명서 발급</a>
-      <a class="card" href="paystub.html">급여명세서 조회</a>
-      <a class="card" href="training.html">교육 이수 내역</a>
-      <a class="card" href="attendance.html">근태 현황</a>
-      <a class="card" href="profile.html">인사정보 조회</a>
-      <a class="card" href="welfare.html">복리후생 안내</a>
-      <a class="card" href="support.html">시스템 요청</a>
-      <a class="card" href="notices.html">사내공지 모음</a>
+  <main class="container">
+    <nav class="cards">
+      <a class="card" href="#">재직증명서 발급</a>
+      <a class="card" href="#">급여명세서 조회</a>
+      <a class="card" href="#">교육 이수 내역</a>
+      <a class="card" href="#">근태 현황</a>
+      <a class="card" href="#">인사정보 조회</a>
+      <a class="card" href="#">복리후생 안내</a>
+      <a class="card" href="#">시스템 요청</a>
+      <a class="card" href="#">사내공지 모음</a>
     </nav>
   </main>
 
   <footer>ⓒ Hyundai Motor Company. All rights reserved.</footer>
-
-  <script>
-    // 로고 이미지가 로드 실패하면 텍스트 fallback 노출
-    (function(){
-      var img = document.querySelector('.logo-box img');
-      var fb  = document.querySelector('.logo-fallback');
-      if (img && fb) {
-        if (!img.complete || img.naturalWidth === 0) fb.style.display='inline';
-        img.addEventListener('error', function(){ fb.style.display='inline'; });
-        img.addEventListener('load',  function(){ if (img.naturalWidth>0){ fb.style.display='none'; }});
-      }
-    })();
-  </script>
 </body>
 </html>
