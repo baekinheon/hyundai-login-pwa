@@ -1,92 +1,112 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>현대자동차 사내포털</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Noto Sans KR', sans-serif;
-      background-color: #f4f6f8;
+    :root{
+      --bg:#f4f6f8;
+      --card:#ffffff;
+      --line:#e3e7ee;
+      --ink:#0b1320;
+      --muted:#5b6675;
+      --brand:#002c5f;      /* 현대 CI 블루 */
+      --brand-2:#0b57d0;    /* 보조 포커스 색 */
     }
-    header {
-      background-color: #003478;
-      color: white;
-      padding: 16px 30px;
-      font-size: 18px;
-      font-weight: bold;
+
+    /* reset-ish */
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; background:var(--bg); color:var(--ink); }
+    body{ font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Apple SD Gothic Neo",Segoe UI,Roboto,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+
+    /* header */
+    header{
+      background:var(--brand);
+      color:#fff;
+      padding:14px 24px;
     }
-    footer {
-      background-color: #e9ecef;
-      text-align: center;
-      font-size: 12px;
-      color: #555;
-      padding: 12px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+    .brand{
+      max-width:1160px; margin:0 auto;
+      display:flex; align-items:center; gap:10px;
+      font-weight:600; letter-spacing:.04em; font-size:16px;
     }
-    .container {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 30px;
-      padding-bottom: 80px; /* footer 공간 확보 */
+    .brand img{
+      height:18px; width:auto; display:block; opacity:.95;
     }
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
+
+    /* layout */
+    .container{
+      max-width:1160px; margin:0 auto; padding:28px 24px 92px;
     }
-    .card {
-      flex: 1 1 calc(33.3% - 20px);
-      background: white;
-      padding: 24px;
-      text-align: center;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      min-width: 240px;
-      transition: 0.3s;
+
+    /* cards grid */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:18px;
     }
-    .card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    @media (max-width:1024px){ .cards{ grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width:768px){  .cards{ grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width:520px){  .cards{ grid-template-columns: 1fr; } }
+
+    .card{
+      display:flex; align-items:center; justify-content:center;
+      min-height:64px;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:12px;
+      box-shadow:0 1px 2px rgba(0,0,0,.04);
+      text-decoration:none; color:var(--ink);
+      font-size:15px; font-weight:500;
+      transition: box-shadow .15s ease, transform .15s ease, background-color .15s ease;
     }
-    .card a {
-      color: #333;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      display: block;
+    .card:hover{
+      background:#f7f9fc;
+      box-shadow:0 2px 8px rgba(0,0,0,.07);
+      transform: translateY(-2px);
     }
-    @media (max-width: 768px) {
-      .card {
-        flex: 1 1 100%;
-      }
+    .card:focus-visible{
+      outline:2px solid var(--brand-2);
+      outline-offset:2px;
+    }
+
+    /* footer */
+    footer{
+      position:fixed; left:0; right:0; bottom:0;
+      background:#edf0f4; color:#556070;
+      border-top:1px solid var(--line);
+      font-size:12px; text-align:center; padding:10px 12px;
+    }
+
+    /* motion preference */
+    @media (prefers-reduced-motion: reduce){
+      .card{ transition:none; }
     }
   </style>
 </head>
 <body>
-  <header>
-    HYUNDAI | 사내 포털 시스템
+  <header role="banner" aria-label="상단 헤더">
+    <div class="brand">
+      <!-- 로고 파일이 있을 경우 표시됩니다. 없으면 텍스트만 보입니다. -->
+      <img src="hyundai_logo.png" alt="" onerror="this.style.display='none'">
+      <span>HYUNDAI | 사내 포털 시스템</span>
+    </div>
   </header>
 
-  <div class="container">
-    <!-- 공지 박스 삭제됨 -->
+  <main class="container" role="main">
+    <nav class="cards" aria-label="주요 서비스">
+      <a class="card" href="certificate.html">재직증명서 발급</a>
+      <a class="card" href="paystub.html">급여명세서 조회</a>
+      <a class="card" href="training.html">교육 이수 내역</a>
+      <a class="card" href="attendance.html">근태 현황</a>
+      <a class="card" href="profile.html">인사정보 조회</a>
+      <a class="card" href="welfare.html">복리후생 안내</a>
+      <a class="card" href="support.html">시스템 요청</a>
+      <a class="card" href="notices.html">사내공지 모음</a>
+    </nav>
+  </main>
 
-    <div class="cards">
-      <div class="card"><a href="certificate.html">재직증명서 발급</a></div>
-      <div class="card"><a href="paystub.html">급여명세서 조회</a></div>
-      <div class="card"><a href="training.html">교육 이수 내역</a></div>
-      <div class="card"><a href="attendance.html">근태 현황</a></div>
-      <div class="card"><a href="profile.html">인사정보 조회</a></div>
-      <div class="card"><a href="welfare.html">복리후생 안내</a></div>
-      <div class="card"><a href="support.html">시스템 요청</a></div>
-      <div class="card"><a href="notices.html">사내공지 모음</a></div>
-    </div>
-  </div>
-
-  <footer>
-    ⓒ Hyundai Motor Company. All rights reserved.
-  </footer>
+  <footer>ⓒ Hyundai Motor Company. All rights reserved.</footer>
 </body>
 </html>
