@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>현대자동차 사내포털</title>
+  <title>HYUNDAI | 사내 포털 시스템</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root{
@@ -19,26 +19,27 @@
     html,body{ margin:0; padding:0; background:var(--bg); color:var(--ink); }
     body{ font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Apple SD Gothic Neo",Segoe UI,Roboto,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
 
+    /* 헤더 */
     header{
       background:var(--brand);
       color:#fff;
-      padding:12px 24px;
+      padding:14px 28px;
     }
     .brand{
       max-width:1160px; margin:0 auto;
-      display:flex; align-items:center; gap:10px;
+      display:flex; align-items:center;
+      gap:12px;
       min-height:48px;
-      font-weight:600; font-size:16px; letter-spacing:.02em;
+      font-weight:600; font-size:16px; letter-spacing:.03em;
     }
     .brand img{
-      height:22px; width:auto; display:block;
-      opacity:.95;
-    }
-    .brand span{
-      position:relative;
-      top:1px;
+      height:24px; width:auto;
+      display:block;
+      opacity:0.95;
+      transform:translateY(1px);
     }
 
+    /* 메인 레이아웃 */
     .container{
       max-width:1160px; margin:0 auto; padding:28px 24px 96px;
     }
@@ -68,10 +69,6 @@
       box-shadow:0 2px 8px rgba(0,0,0,.07);
       transform: translateY(-2px);
     }
-    .card:focus-visible{
-      outline:2px solid var(--brand-2);
-      outline-offset:2px;
-    }
 
     footer{
       position:fixed; left:0; right:0; bottom:0;
@@ -84,7 +81,7 @@
 <body>
   <header>
     <div class="brand">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Hyundai_Motor_Company_logo.svg" alt="Hyundai Motor Company">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Hyundai_Motor_Company_logo.svg" alt="HYUNDAI Logo">
       <span>사내 포털 시스템</span>
     </div>
   </header>
