@@ -5,169 +5,131 @@
   <title>급여명세서</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root {
-      --bg: #ffffff;
-      --page: #f5f6f8;
-      --border: #e3e5e8;
-      --label: #f1f3f5;
-      --muted: #6b7280;
-      --ink: #0b0c0f;
-      --accent: #1f6feb;
+    :root{
+      --bg:#ffffff;
+      --page:#f5f6f8;
+      --border:#e3e5e8;
+      --label:#f1f3f5;
+      --muted:#6b7280;
+      --ink:#0b0c0f;
+      --accent:#004ea2; /* HYUNDAI BLUE */
     }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--page); }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans KR", "Apple SD Gothic Neo", Roboto, "Segoe UI", Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      color: var(--ink);
-      line-height: 1.55;
-      letter-spacing: 0;
-    }
-
-    .page { max-width: 840px; margin: 18px auto; padding: 12px; }
-    .sheet {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 6px 24px rgba(12, 18, 28, .06);
-      overflow: hidden;
-      position: relative;
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; background:var(--page); }
+    body{
+      font-family:-apple-system, BlinkMacSystemFont,"Noto Sans KR","Apple SD Gothic Neo",Roboto,"Segoe UI",Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      color:var(--ink);
+      line-height:1.55;
     }
 
-    /* 로고 영역 */
-    .logo-area {
-      position: absolute;
-      top: 18px;
-      right: 24px;
-    }
-    .logo {
-      width: 140px;
-    }
-    .logo-text {
-      display: none;
-      font-weight: 700;
-      font-size: 15px;
-      color: #004ea2;
-    }
-    @media (max-width: 600px) {
-      .logo { display: none; }
-      .logo-text { display: inline; }
+    .page{ max-width:840px; margin:18px auto; padding:12px; }
+    .sheet{
+      background:var(--bg);
+      border:1px solid var(--border);
+      border-radius:12px;
+      box-shadow:0 6px 24px rgba(12,18,28,.06);
+      overflow:hidden;
+      position:relative;
     }
 
-    .appbar {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 14px 20px;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, #fff, #fafbfc);
+    /* 상단 바: 왼쪽 지급일, 오른쪽 로고/문구 */
+    .appbar{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:14px 20px;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(180deg,#fff,#fafbfc);
     }
-    .paydate { font-size: 14px; color: #222; white-space: nowrap; }
+    .paydate{ font-size:14px; color:#222; white-space:nowrap; }
 
-    .title {
-      margin: 14px 20px 10px;
-      text-align: center;
-      font-weight: 800;
-      letter-spacing: .08em;
-      font-size: 26px;
-    }
+    .logo-area{ display:flex; align-items:center; gap:8px; }
+    .logo{ width:115px; height:auto; }
+    .logo-text{ display:none; font-weight:700; font-size:15px; color:var(--accent); }
 
-    .info-wrap { padding: 4px 20px 18px; }
-    .info {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-    }
-    .info td {
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--border);
-      vertical-align: middle;
-      font-size: 15px;
-    }
-    .info tr:last-child td { border-bottom: 0; }
-    .info td.label {
-      width: 112px;
-      background: var(--label);
-      font-weight: 700;
-      white-space: nowrap;
-    }
-    .info td.value { white-space: nowrap; }
-
-    .table-wrap { padding: 0 20px 22px; }
-    .pay {
-      width: 100%;
-      border-collapse: collapse;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      font-size: 15px;
-    }
-    .pay th, .pay td { border: 1px solid var(--border); padding: 11px 12px; }
-    .pay th {
-      background: #fafbfc;
-      font-weight: 700;
-    }
-    .pay td.num {
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-    .pay tr:nth-child(even) td { background: #fff; }
-    .pay tr:nth-child(odd) td { background: #fdfefe; }
-
-    .pay .total-row td {
-      background: #f7faff;
-      font-weight: 900;
-      border-top: 2px solid #d9e3ff;
-    }
-    .pay .total-row:last-of-type td {
-      background: #eef5ff;
-      color: #004ea2;
-      font-size: 17px;
+    /* 모바일에선 로고 대신 텍스트 */
+    @media (max-width:600px){
+      .logo{ display:none; }
+      .logo-text{ display:inline; }
     }
 
-    .legend {
-      padding: 0 20px 18px;
-      font-size: 12px;
-      color: var(--muted);
-      text-align: right;
+    .title{
+      margin:14px 20px 10px;
+      text-align:center;
+      font-weight:800;
+      letter-spacing:.08em;
+      font-size:26px;
     }
 
-    @media (max-width: 480px) {
-      .page { padding: 8px; }
-      .appbar { padding: 12px 14px; }
-      .title { font-size: 22px; letter-spacing: .06em; margin: 12px 12px 8px; }
-      .info-wrap { padding: 4px 12px 14px; }
-      .table-wrap { padding: 0 12px 16px; }
-      .info td { padding: 9px 10px; font-size: 14px; }
-      .info td.label { width: 92px; }
-      .pay { font-size: 14px; }
-      .pay th, .pay td { padding: 9px 10px; }
-      .pay .total-row:last-of-type td { font-size: 16px; }
+    .info-wrap{ padding:4px 20px 18px; }
+    .info{
+      width:100%;
+      border-collapse:separate; border-spacing:0;
+      border:1px solid var(--border);
+      border-radius:10px; overflow:hidden; background:#fff;
+    }
+    .info td{
+      padding:12px 14px; border-bottom:1px solid var(--border);
+      vertical-align:middle; font-size:15px;
+    }
+    .info tr:last-child td{ border-bottom:0; }
+    .info td.label{
+      width:112px; background:var(--label); font-weight:700; white-space:nowrap;
+    }
+    .info td.value{ white-space:nowrap; }
+
+    .table-wrap{ padding:0 20px 22px; }
+    .pay{
+      width:100%; border-collapse:collapse;
+      border:1px solid var(--border); border-radius:10px; overflow:hidden; font-size:15px;
+    }
+    .pay th, .pay td{ border:1px solid var(--border); padding:11px 12px; }
+    .pay th{ background:#fafbfc; font-weight:700; }
+    .pay td.num{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+    .pay tr:nth-child(even) td{ background:#fff; }
+    .pay tr:nth-child(odd)  td{ background:#fdfefe; }
+
+    /* 합계 강조 */
+    .pay .total-row td{
+      background:#f7faff; font-weight:900; border-top:2px solid #d9e3ff;
+    }
+    .pay .total-row:last-of-type td{
+      background:#eef5ff; color:var(--accent); font-size:17px;
     }
 
-    @media print {
-      html, body { background: #fff; }
-      .page { margin: 0; padding: 0; }
-      .sheet { border: none; box-shadow: none; border-radius: 0; }
-      .title { letter-spacing: .06em; }
+    .legend{
+      padding:0 20px 18px; font-size:12px; color:var(--muted); text-align:right;
+    }
+
+    @media (max-width:480px){
+      .page{ padding:8px; }
+      .appbar{ padding:12px 14px; }
+      .title{ font-size:22px; letter-spacing:.06em; margin:12px 12px 8px; }
+      .info-wrap{ padding:4px 12px 14px; }
+      .table-wrap{ padding:0 12px 16px; }
+      .info td{ padding:9px 10px; font-size:14px; }
+      .info td.label{ width:92px; }
+      .pay{ font-size:14px; }
+      .pay th, .pay td{ padding:9px 10px; }
+      .pay .total-row:last-of-type td{ font-size:16px; }
+    }
+
+    @media print{
+      html,body{ background:#fff; }
+      .page{ margin:0; padding:0; }
+      .sheet{ border:none; box-shadow:none; border-radius:0; }
+      .title{ letter-spacing:.06em; }
     }
   </style>
 </head>
 <body>
   <div class="page">
     <section class="sheet" role="document" aria-label="급여명세서">
-      <div class="logo-area">
-        <img src="hyundai_logo.png" alt="HYUNDAI 로고" class="logo">
-        <span class="logo-text">현대자동차(주)</span>
-      </div>
-
       <header class="appbar">
         <div class="paydate" id="payDate">지급일:</div>
+        <div class="logo-area">
+          <img src="hyundai_logo.png" alt="HYUNDAI 로고" class="logo">
+          <span class="logo-text">현대자동차(주)</span>
+        </div>
       </header>
 
       <h1 class="title">급여명세서</h1>
@@ -180,10 +142,10 @@
           </tr>
           <tr>
             <td class="label">직급</td><td class="value">연구원</td>
-            <td class="label">사번</td><td class="value">2022090401</td>
+            <td class="label">사번</td><td class="value">2022090012</td>
           </tr>
           <tr>
-            <td class="label">지급년월</td><td class="value" colspan="3" id="payMonth">2025년 11월</td>
+            <td class="label">지급년월</td><td class="value" colspan="3" id="payMonth">—</td>
           </tr>
         </table>
       </div>
@@ -222,15 +184,21 @@
   </div>
 
   <script>
-    // 오늘 날짜 기준으로 지급일 = 이번 달 25일
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const payDay = `지급일: ${year}년 ${month}월 25일`;
-    document.getElementById("payDate").innerText = payDay;
+    // 이번 달 25일을 지급일로 표시
+    (function () {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(1, '0'); // 1~12
+      const monthPad2 = String(now.getMonth() + 1).padStart(2, '0'); // 01~12
 
-    // 지급년월 자동 표시
-    document.getElementById("payMonth").innerText = `${year}년 ${month}월`;
+      // 지급일: 이번 달 25일
+      document.getElementById('payDate').innerText =
+        `지급일: ${year}년 ${month}월 25일`;
+
+      // 지급년월: 이번 달
+      document.getElementById('payMonth').innerText =
+        `${year}년 ${monthPad2}월`;
+    })();
   </script>
 </body>
 </html>
