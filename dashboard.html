@@ -5,7 +5,6 @@
   <title>HYUNDAI | 사내 포털 대시보드</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- PWA(있을 때만 사용) -->
   <link rel="icon" href="hyundai_logo_192.png" />
   <link rel="apple-touch-icon" href="hyundai_logo_192.png" />
   <link rel="manifest" href="manifest.json" />
@@ -20,72 +19,40 @@
       --brand:#002c5f;
       --focus:#0b57d0;
     }
-
     *{ box-sizing:border-box; }
     html,body{ margin:0; padding:0; background:var(--bg); color:var(--ink); }
     body{
       font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Apple SD Gothic Neo",Segoe UI,Roboto,Arial,sans-serif;
       -webkit-font-smoothing:antialiased;
     }
-
-    /* 헤더 */
     header{
-      background:var(--brand);
-      color:#fff;
-      padding:12px 24px;
+      background:var(--brand); color:#fff; padding:12px 24px;
       box-shadow:inset 0 -1px 0 rgba(255,255,255,.15);
     }
-    .topbar{
-      max-width:1160px; margin:0 auto;
-      display:flex; align-items:center; justify-content:space-between;
-      min-height:48px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      font-weight:600; font-size:16px; letter-spacing:.02em;
-    }
+    .topbar{ max-width:1160px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; min-height:48px; }
+    .brand{ display:flex; align-items:center; gap:12px; font-weight:600; font-size:16px; letter-spacing:.02em; }
     .brand img{ height:22px; width:auto; display:block; opacity:.96; transform:translateY(1px); }
-    .brand-fallback{
-      display:none; padding:2px 8px; border-radius:6px;
-      background:rgba(255,255,255,.16); font-size:13px;
-      letter-spacing:.12em; font-weight:700;
-    }
-    .util{
-      display:flex; align-items:center; gap:10px; opacity:.9;
-      font-size:13px;
-    }
+    .brand-fallback{ display:none; padding:2px 8px; border-radius:6px; background:rgba(255,255,255,.16); font-size:13px; letter-spacing:.12em; font-weight:700; }
+    .util{ display:flex; align-items:center; gap:10px; opacity:.9; font-size:13px; }
     .util a{ color:#fff; text-decoration:none; padding:6px 10px; border-radius:8px; }
     .util a:hover{ background:rgba(255,255,255,.12); }
-
-    /* 본문 */
     .container{ max-width:1160px; margin:0 auto; padding:28px 24px 96px; }
-    .cards{
-      display:grid; gap:18px;
-      grid-template-columns: repeat(4, 1fr);
-    }
+    .cards{ display:grid; gap:18px; grid-template-columns: repeat(4, 1fr); }
     @media (max-width:1024px){ .cards{ grid-template-columns: repeat(3, 1fr); } }
     @media (max-width:768px){  .cards{ grid-template-columns: repeat(2, 1fr); } }
     @media (max-width:520px){  .cards{ grid-template-columns: 1fr; } }
-
     .card{
-      display:flex; align-items:center; justify-content:center;
-      min-height:64px; background:var(--card);
-      border:1px solid var(--line); border-radius:12px;
-      box-shadow:0 1px 2px rgba(0,0,0,.04);
-      text-decoration:none; color:var(--ink);
-      font-size:15px; font-weight:500;
-      transition: box-shadow .15s ease, transform .15s ease, background-color .15s ease;
+      display:flex; align-items:center; justify-content:center; min-height:64px;
+      background:var(--card); border:1px solid var(--line); border-radius:12px;
+      box-shadow:0 1px 2px rgba(0,0,0,.04); text-decoration:none; color:var(--ink);
+      font-size:15px; font-weight:500; transition: box-shadow .15s, transform .15s, background-color .15s;
     }
     .card:hover{ background:#f7f9fc; box-shadow:0 2px 8px rgba(0,0,0,.07); transform: translateY(-2px); }
     .card:focus-visible{ outline:2px solid var(--focus); outline-offset:3px; }
-
     footer{
-      position:fixed; left:0; right:0; bottom:0;
-      background:#edf0f4; color:#556070;
-      border-top:1px solid var(--line); font-size:12px;
-      text-align:center; padding:10px 12px;
+      position:fixed; left:0; right:0; bottom:0; background:#edf0f4; color:#556070;
+      border-top:1px solid var(--line); font-size:12px; text-align:center; padding:10px 12px;
     }
-
     @media (prefers-reduced-motion: reduce){ .card{ transition:none; } }
   </style>
 </head>
@@ -93,9 +60,7 @@
   <header role="banner" aria-label="상단 헤더">
     <div class="topbar">
       <div class="brand">
-        <img id="hd-logo"
-             src="hyundai_logo.png"
-             alt="HYUNDAI 로고"
+        <img id="hd-logo" src="hyundai_logo.png" alt="HYUNDAI 로고"
              onerror="this.style.display='none';document.getElementById('hd-fallback').style.display='inline-flex';">
         <span id="hd-fallback" class="brand-fallback">HYUNDAI</span>
         <span>사내 포털 시스템</span>
@@ -109,13 +74,39 @@
 
   <main class="container" role="main">
     <nav class="cards" aria-label="주요 서비스">
-      <!-- 실제 파일로 연결 (버전 파라미터는 스크립트에서 자동 추가) -->
-      <a class="card" data-href="certificate.html">재직증명서 발급</a>
-      <a class="card" data-href="paystub.html">급여명세서 조회</a>
-      <a class="card" data-href="training.html">교육 이수 내역</a>
-      <a class="card" data-href="attendance.html">근태 현황</a>
+      <!-- 실제 파일로 직접 연결 -->
+      <a class="card" href="certificate.html?v=2">재직증명서 발급</a>
+      <a class="card" href="paystub.html?v=2">급여명세서 조회</a>
+      <a class="card" href="training.html?v=2">교육 이수 내역</a>
+      <a class="card" href="attendance.html?v=2">근태 현황</a>
 
-      <a class="card" data-href="profile.html">인사정보 조회</a>
-      <a class="card" data-href="welfare.html">복리후생 안내</a>
-      <a class="card" data-href="support.html">시스템 요청</a>
-      <a class="card" data-href="notices.html">사내공지
+      <a class="card" href="profile.html?v=2">인사정보 조회</a>
+      <a class="card" href="welfare.html?v=2">복리후생 안내</a>
+      <a class="card" href="support.html?v=2">시스템 요청</a>
+      <a class="card" href="notices.html?v=2">사내공지 모음</a>
+
+      <!-- 선택 항목 -->
+      <a class="card" href="vacation_notice.html?v=2">휴가/공지 안내</a>
+      <a class="card" href="dashboard.html?v=2">대시보드(요약)</a>
+    </nav>
+  </main>
+
+  <footer>ⓒ Hyundai Motor Company. All rights reserved.</footer>
+
+  <script>
+    // (선택) 예전 SW 캐시가 걸려 있으면 자동 해제
+    (async () => {
+      try{
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          regs.forEach(r => r.unregister());
+        }
+        if (window.caches && caches.keys) {
+          const keys = await caches.keys();
+          await Promise.all(keys.map(k => caches.delete(k)));
+        }
+      }catch(e){}
+    })();
+  </script>
+</body>
+</html>
