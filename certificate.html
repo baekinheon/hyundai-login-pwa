@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>재직증명서</title>
   <style>
+    /* A4 인쇄 최적화 */
     @page { size: A4; margin: 16mm; }
     html, body {
       margin: 0;
@@ -12,6 +13,7 @@
       -webkit-print-color-adjust: exact;
     }
 
+    /* 문서 컨테이너 */
     .certificate {
       width: 178mm;
       margin: 0 auto;
@@ -20,6 +22,15 @@
       border: 1px solid #d7dbe2;
       box-sizing: border-box;
       position: relative;
+    }
+
+    /* 상단 로고 */
+    .logo {
+      position: absolute;
+      top: 22mm;
+      right: 18mm;
+      width: 95px;
+      opacity: 0.95;
     }
 
     .title {
@@ -50,35 +61,47 @@
       font-weight: 600;
     }
 
+    /* 문장 및 하단 영역 */
+    .confirm {
+      text-align: center;
+      font-size: 15px;
+      margin-top: 12mm;
+      line-height: 1.8;
+    }
+    .date {
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 4mm;
+    }
+
+    /* 하단 회사명 + 대표이사 */
     .footer {
       text-align: center;
       font-weight: 700;
       line-height: 1.9;
       position: relative;
-      display: inline-block;
-      margin-top: 10mm;
+      margin-top: 14mm;
     }
 
     .corp {
       letter-spacing: 0;
-      margin-bottom: .3em;
+      margin-bottom: .4em;
     }
 
-    .ceo {
+    .ceo-line {
       display: inline-block;
       position: relative;
+      margin-top: 4px;
     }
 
-    /* 도장 위치 조정: 대표이사 오른쪽 아래 겹치게 */
+    /* 도장 위치 - 대표이사 오른쪽 살짝 겹치게 */
     .seal {
       position: absolute;
-      right: -25mm;   /* 오른쪽으로 약간 이동 */
-      bottom: -5mm;   /* 아래로 살짝 내려 */
-      width: 22mm;
-      height: auto;
-      opacity: .96;
-      image-rendering: -webkit-optimize-contrast;
-      z-index: 0;     /* 글자 살짝 위쪽에 겹치도록 */
+      right: -85px;
+      top: -25px;
+      width: 80px;
+      opacity: 0.95;
     }
 
     @media print {
@@ -88,6 +111,9 @@
 </head>
 <body>
   <div class="certificate">
+    <!-- 상단 현대자동차 로고 -->
+    <img src="hyundai_logo.png" alt="현대자동차 로고" class="logo">
+
     <div class="title">재&nbsp;직&nbsp;증&nbsp;명&nbsp;서</div>
 
     <table>
@@ -102,20 +128,28 @@
       <tr><th>용도</th><td>재직 확인용</td></tr>
     </table>
 
-    <div style="text-align:center; font-size:15px; margin-bottom:16mm;">
-      위의 내용이 사실과 다름이 없음을 증명합니다.<br>
-      <strong>2025년 12월 12일</strong>
+    <div class="confirm">
+      위의 내용이 사실과 다름이 없음을 증명합니다.
     </div>
+
+    <div class="date" id="today"></div>
 
     <div class="footer">
       <div class="corp">
         현&nbsp;&nbsp;대&nbsp;&nbsp;자&nbsp;&nbsp;동&nbsp;&nbsp;차&nbsp;&nbsp;주&nbsp;&nbsp;식&nbsp;&nbsp;회&nbsp;&nbsp;사
       </div>
-      <div class="ceo">
+      <div class="ceo-line">
         대표이사&nbsp;&nbsp;호&nbsp;&nbsp;세&nbsp;&nbsp;무&nbsp;&nbsp;뇨&nbsp;&nbsp;스
         <img src="seal.png" class="seal" alt="직인">
       </div>
     </div>
   </div>
+
+  <!-- 발급일 자동 생성 -->
+  <script>
+    const today = new Date();
+    const formatted = `${today.getFullYear()}년 ${String(today.getMonth()+1).padStart(2,'0')}월 ${String(today.getDate()).padStart(2,'0')}일`;
+    document.getElementById('today').innerText = formatted;
+  </script>
 </body>
 </html>
