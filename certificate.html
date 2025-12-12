@@ -1,100 +1,128 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>재직증명서</title>
-    <style>
-        body {
-            font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-            background: #ffffff;
-            margin: 0;
-            padding: 60px;
-        }
-        .certificate {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 50px 40px 70px 40px;
-            background: white;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 8px rgba(0,0,0,0.05);
-            position: relative;
-        }
-        .title {
-            text-align: center;
-            font-size: 26px;
-            font-weight: bold;
-            margin-bottom: 40px;
-            letter-spacing: 0.4em;
-            white-space: nowrap;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 16px;
-            margin-bottom: 50px;
-        }
-        table th, table td {
-            border: 1px solid #aaa;
-            padding: 12px;
-            text-align: left;
-        }
-        table th {
-            background-color: #f9f9f9;
-            width: 150px;
-            font-weight: normal;
-        }
-        .footer {
-            text-align: center;
-            font-size: 16px;
-            line-height: 1.8;
-            font-weight: bold;
-            white-space: pre-line;
-        }
-        .logo {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            width: 160px;
-        }
-        .seal {
-            position: absolute;
-            bottom: 10px;
-            right: 50px;
-            width: 100px;
-            opacity: 0.92;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>재직증명서</title>
+<style>
+  :root {
+    --ink:#0a1b3f;
+    --sub:#5b657f;
+    --line:#e6e8ef;
+    --bg:#f6f7fa;
+  }
+  body {
+    font-family:-apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    background: var(--bg);
+    margin:0;
+    padding:24px;
+    color:var(--ink);
+  }
+  .certificate {
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:16px;
+    max-width:520px;
+    margin:0 auto;
+    padding:28px 22px 36px 22px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.04);
+    position:relative;
+  }
+  .logo {
+    position:absolute;
+    top:18px;
+    right:20px;
+    width:90px;
+    height:22px;
+    border:1px dashed var(--line);
+    display:grid;
+    place-items:center;
+    font-size:11px;
+    color:var(--sub);
+  }
+  .title {
+    text-align:center;
+    font-size:20px;
+    font-weight:800;
+    letter-spacing:0.6em;
+    text-indent:0.6em;
+    margin:10px 0 24px;
+  }
+  table {
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+    margin-bottom:24px;
+  }
+  th, td {
+    border:1px solid var(--line);
+    padding:10px 12px;
+    text-align:left;
+  }
+  th {
+    background:#f9fafc;
+    color:var(--sub);
+    width:36%;
+    font-weight:500;
+  }
+  td {
+    font-weight:600;
+  }
+  .footer {
+    text-align:center;
+    font-weight:700;
+    line-height:1.8;
+    font-size:14px;
+  }
+  .corp {
+    letter-spacing:0.6em;
+    text-indent:0.6em;
+    margin-bottom:8px;
+  }
+  .rep {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+  }
+  .seal {
+    width:50px;
+    height:50px;
+    border:1px dashed var(--line);
+    border-radius:6px;
+    display:grid;
+    place-items:center;
+    font-size:10px;
+    color:var(--sub);
+  }
+  @media print {
+    body { background:#fff; }
+    .certificate { box-shadow:none; border:1px solid #ccc; }
+    .logo, .seal { border:none; }
+  }
+</style>
 </head>
 <body>
-    <div class="certificate">
-        <img src="hyundai_logo.png" class="logo" alt="현대자동차 로고">
-        <div class="title">재&nbsp;&nbsp;직&nbsp;&nbsp;증&nbsp;&nbsp;명&nbsp;&nbsp;서</div>
-        <table>
-            <tr><th>성명</th><td>백인헌</td></tr>
-            <tr><th>생년월일</th><td>1996년 06월 15일</td></tr>
-            <tr><th>소속</th><td>연구개발본부</td></tr>
-            <tr><th>직위</th><td>연구원</td></tr>
-            <tr><th>직무</th><td>차체 구조 설계</td></tr>
-            <tr><th>재직상태</th><td>재직</td></tr>
-            <tr><th>입사일</th><td>2022년 09월 04일</td></tr>
-            <tr><th>재직기간</th><td>2022년 09월 04일 ~ 현재 (3년 3개월)</td></tr>
-        </table>
-        <div class="footer">
-현&nbsp;&nbsp;&nbsp;&nbsp;대&nbsp;&nbsp;&nbsp;&nbsp;자&nbsp;&nbsp;&nbsp;&nbsp;동&nbsp;&nbsp;&nbsp;&nbsp;차&nbsp;&nbsp;&nbsp;&nbsp;주&nbsp;&nbsp;&nbsp;&nbsp;식&nbsp;&nbsp;&nbsp;&nbsp;회&nbsp;&nbsp;&nbsp;&nbsp;사<br>
-대표이사&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;장&nbsp;&nbsp;&nbsp;&nbsp;재&nbsp;&nbsp;&nbsp;&nbsp;훈
-        </div>
-        <img src="seal.png" class="seal" alt="직인">
+  <div class="certificate">
+    <div class="logo">HYUNDAI</div>
+    <div class="title">재&nbsp;&nbsp;직&nbsp;&nbsp;증&nbsp;&nbsp;명&nbsp;&nbsp;서</div>
+    <table>
+      <tr><th>성명</th><td>백인헌</td></tr>
+      <tr><th>생년월일</th><td>1996년 06월 15일</td></tr>
+      <tr><th>소속</th><td>연구개발본부</td></tr>
+      <tr><th>직위</th><td>연구원</td></tr>
+      <tr><th>직무</th><td>차체 구조 설계</td></tr>
+      <tr><th>재직상태</th><td>재직</td></tr>
+      <tr><th>입사일</th><td>2022년 09월 04일</td></tr>
+      <tr><th>재직기간</th><td>2022년 09월 04일 ~ 현재 (3년 3개월)</td></tr>
+    </table>
+    <div class="footer">
+      <div class="corp">현 대 자 동 차 주 식 회 사</div>
+      <div class="rep">
+        <div>대표이사&nbsp;&nbsp;장&nbsp;&nbsp;재&nbsp;&nbsp;훈</div>
+        <div class="seal">직인 자리</div>
+      </div>
     </div>
-
-<p class="notice"></p>
-<style>
-.notice {
-    font-size: 14px;
-    color: #555;
-    text-align: center;
-    margin-top: 16px;
-}
-</style>
-
+  </div>
 </body>
 </html>
