@@ -22,20 +22,31 @@
       position: relative;
     }
 
-    /* HYUNDAI 로고 */
+    /* HYUNDAI 로고 - 좌측 상단 */
     .logo {
       position: absolute;
-      top: 16mm;
-      right: 18mm;
-      width: 128px;
-      opacity: .96;
+      top: 14mm;
+      left: 18mm;
+      width: 122px;
+      opacity: .95;
     }
 
+    /* 발급일자 - 우측 상단 */
+    .issued-date {
+      position: absolute;
+      top: 18mm;
+      right: 20mm;
+      font-size: 14px;
+      color: #333;
+      letter-spacing: 0.05em;
+    }
+
+    /* 문서 제목 */
     .title {
       text-align: center;
       font-size: 27px;
       font-weight: 700;
-      margin: 6mm 0 12mm;
+      margin: 14mm 0 14mm;
       letter-spacing: .14em;
       white-space: nowrap;
     }
@@ -64,31 +75,31 @@
       font-size: 15px;
       color: #333;
       margin-top: 12mm;
-      margin-bottom: 4mm;
+      margin-bottom: 5mm;
     }
     .date {
       text-align: center;
       font-weight: 700;
       font-size: 15.5px;
-      margin-bottom: 14mm;
+      margin-bottom: 16mm;
     }
 
-    /* 하단 회사명/대표이사 + 직인 */
+    /* 하단 회사명/대표이사 + 직인 (우측 정렬) */
     .footer {
-      text-align: center;
+      text-align: right;
       font-weight: 700;
       line-height: 1.9;
       position: relative;
+      padding-right: 70px; /* 도장 영역 확보 */
     }
-    .corp { margin-bottom: .5em; }
+    .corp { margin-bottom: .4em; }
     .ceo-line { display: inline-block; position: relative; }
 
-    /* ✅ 직인 위치 조정: 이름과 겹침 방지 */
-    .seal{
+    .seal {
       position: absolute;
-      right: -58px;   /* -64px → 살짝 더 오른쪽 */
-      top: 2px;       /* -6px → 조금 아래 */
-      width: 68px;
+      right: 0;
+      top: -6px;
+      width: 72px;
       opacity: .92;
       image-rendering: -webkit-optimize-contrast;
     }
@@ -101,6 +112,7 @@
 <body>
   <div class="certificate">
     <img src="hyundai_logo.png" alt="HYUNDAI 로고" class="logo">
+    <div class="issued-date" id="issue-top"></div>
 
     <div class="title">재&nbsp;직&nbsp;증&nbsp;명&nbsp;서</div>
 
@@ -121,24 +133,25 @@
     <div class="date" id="today"></div>
 
     <div class="footer">
-      <div class="corp">현&nbsp;&nbsp;대&nbsp;&nbsp;자&nbsp;&nbsp;동&nbsp;&nbsp;차&nbsp;&nbsp;주&nbsp;&nbsp;식&nbsp;&nbsp;회&nbsp;&nbsp;사</div>
+      <div class="corp">현대자동차 주식회사</div>
       <div class="ceo-line">
-        대표이사&nbsp;&nbsp;호&nbsp;&nbsp;세&nbsp;&nbsp;무&nbsp;&nbsp;뇨&nbsp;&nbsp;스&nbsp;&nbsp;&nbsp;
+        대표이사&nbsp;&nbsp;호&nbsp;&nbsp;세&nbsp;&nbsp;무&nbsp;&nbsp;뇨&nbsp;&nbsp;스
         <img src="seal.png" class="seal" alt="직인">
       </div>
     </div>
   </div>
 
   <script>
-    // 발급일 자동
+    // 오늘 날짜
     const today = new Date();
     const y = today.getFullYear();
     const m = String(today.getMonth()+1).padStart(2,'0');
     const d = String(today.getDate()).padStart(2,'0');
     document.getElementById('today').innerText = `${y}년 ${m}월 ${d}일`;
+    document.getElementById('issue-top').innerText = `발급일자 : ${y}.${m}.${d}`;
 
-    // 재직기간 계산 (일자 미도달 시 한 달 차감)
-    const joinDate = new Date(2022, 8, 4); // 2022-09-04 (month 0 기반)
+    // 재직기간 계산
+    const joinDate = new Date(2022, 8, 4);
     let years = today.getFullYear() - joinDate.getFullYear();
     let months = today.getMonth() - joinDate.getMonth();
     if (today.getDate() < joinDate.getDate()) months -= 1;
