@@ -18,8 +18,7 @@
     }
 
     .certificate {
-      /* 인쇄 안전영역 확보 (여유 많이 줌) */
-      width: 170mm;              /* 178 → 170mm로 축소 */
+      width: 170mm; /* 인쇄 안전영역 */
       max-width: 100%;
       margin: 0 auto;
       padding: 18mm 16mm 20mm;
@@ -84,6 +83,7 @@
       margin-top: 12mm;
       margin-bottom: 5mm;
     }
+
     .date {
       text-align: center;
       font-weight: 700;
@@ -91,16 +91,23 @@
       margin-bottom: 16mm;
     }
 
-    /* 하단 회사명/대표이사 + 직인 (우측 정렬) */
+    /* 하단 회사명/대표이사 + 직인 */
     .footer {
-      text-align: right;
+      text-align: center;
       font-weight: 700;
       line-height: 1.9;
       position: relative;
-      padding-right: 70px; /* 도장 영역 확보 */
     }
-    .corp { margin-bottom: .4em; }
-    .ceo-line { display: inline-block; position: relative; }
+
+    .corp {
+      margin-bottom: .4em;
+    }
+
+    .ceo-line {
+      display: inline-block;
+      position: relative;
+      padding-right: 70px; /* 직인 공간 */
+    }
 
     .seal {
       position: absolute;
@@ -142,7 +149,7 @@
     <div class="footer">
       <div class="corp">현대자동차 주식회사</div>
       <div class="ceo-line">
-        대표이사&nbsp;&nbsp;호&nbsp;&nbsp;세&nbsp;&nbsp;무&nbsp;&nbsp;뇨&nbsp;&nbsp;스
+        대표이사&nbsp;&nbsp;호세무뇨스
         <img src="seal.png" class="seal" alt="직인">
       </div>
     </div>
@@ -154,17 +161,11 @@
     const y = today.getFullYear();
     const m = String(today.getMonth()+1).padStart(2,'0');
     const d = String(today.getDate()).padStart(2,'0');
+
     document.getElementById('today').innerText = `${y}년 ${m}월 ${d}일`;
     document.getElementById('issue-top').innerText = `발급일자 : ${y}.${m}.${d}`;
 
     // 재직기간 계산
     const joinDate = new Date(2022, 8, 4); // 2022-09-04
     let years = today.getFullYear() - joinDate.getFullYear();
-    let months = today.getMonth() - joinDate.getMonth();
-    if (today.getDate() < joinDate.getDate()) months -= 1;
-    if (months < 0) { years -= 1; months += 12; }
-    document.getElementById('work-period').innerText =
-      `2022년 09월 04일 ~ 현재 (${years}년 ${months}개월)`;
-  </script>
-</body>
-</html>
+    let months = today.getMonth() -
