@@ -14,7 +14,7 @@
     }
 
     .certificate {
-      width: 170mm;               /* 인쇄 안전 영역 */
+      width: 170mm;
       margin: 0 auto;
       padding: 18mm 16mm 20mm;
       border: 1px solid #d7dbe2;
@@ -83,40 +83,38 @@
       text-align: center;
       font-weight: 700;
       font-size: 15.5px;
-      margin-bottom: 9mm;   /* 살짝 줄임 */
+      margin-bottom: 9mm;
     }
 
-    /* ===== 하단 회사명 + 대표이사 + 직인 ===== */
+    /* ===== 하단 회사명 + 대표이사 (가운데) ===== */
     .footer {
+      position: relative;      /* 도장 위치 기준 */
       text-align: center;
-      line-height: 1.5;
-      margin-top: 0;        /* 위에서 당겨오기 */
+      line-height: 1.4;
+      margin-top: 0;
     }
 
-    /* 회사명: 약간만 자간, 굵기 유지 */
     .corp {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.08em; /* 0.12em → 0.08em 로 줄여서 덜 퍼지게 */
-      margin-bottom: 1mm;     /* 바로 아래와 거의 붙게 */
-    }
-
-    /* 대표이사 줄: 회사명과 한 덩어리처럼 */
-    .ceo-line {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;              /* 직인과 텍스트 간격 */
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 0;        /* 대표이사와 거의 붙이기 */
     }
 
     .ceo-text {
-      white-space: nowrap;
-      letter-spacing: 0.02em; /* 너무 꽉 차지 않게 살짝만 */
+      display: inline-block;
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-top: 2px;
     }
 
+    /* ===== 도장: 오른쪽으로 분리 배치 ===== */
     .seal {
+      position: absolute;
+      right: 28mm;             /* ← 원하는 만큼 조절 (오른쪽 여백) */
+      top: 0;                  /* footer의 윗줄 기준 */
+      transform: translateY(12%); /* 대표이사 줄과 비슷하게 맞추기 */
       width: 72px;
       height: auto;
       image-rendering: -webkit-optimize-contrast;
@@ -152,10 +150,8 @@
 
     <div class="footer">
       <div class="corp">현대자동차 주식회사</div>
-      <div class="ceo-line">
-        <span class="ceo-text">대표이사&nbsp;&nbsp;호세무뇨스</span>
-        <img src="seal.png" class="seal" alt="직인">
-      </div>
+      <div class="ceo-text">대표이사&nbsp;&nbsp;호세무뇨스</div>
+      <img src="seal.png" class="seal" alt="직인">
     </div>
   </div>
 
