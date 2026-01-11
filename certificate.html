@@ -86,52 +86,46 @@
       margin-bottom: 9mm;
     }
 
-    /* ===== 아래 서명+직인 블록 ===== */
+    /* ===== 서명 / 직인 구조 ===== */
+
     .footer {
       text-align: center;
+      margin-top: 0;
     }
 
-    .sign-block {
-      display: inline-flex;
-      flex-direction: column;
-      text-align: left;
-      position: relative;
-      padding-right: 95px;  /* 직인 들어갈 자리 */
-      line-height: 1.55;
-    }
-
-    /* 회사명: 한 단계 줄이고 살짝 자간 */
+    /* 회사명 단독 */
     .corp {
-      font-size: 13px;           /* 14 → 13 */
+      font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.06em;
       margin-bottom: 3px;
-    }
-
-    /* 대표이사 줄: 더 작고 얇게 */
-    .ceo-row {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 11.5px;         /* 12.8 → 11.5 */
-      font-weight: 500;
+      letter-spacing: 0.05em;
       white-space: nowrap;
     }
 
-    /* 직인: 글자 대비 더 크게, 대표이사 줄 기준 중앙 */
+    /* 대표이사 + 직인 한줄 */
+    .sign-row {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
+      font-size: 11.5px;
+      font-weight: 500;
+      position: relative;
+    }
+
+    /* 직인은 대표이사 옆 */
     .seal {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 68px;               /* 56 → 68, 더 큼 */
+      width: 68px;  /* 실물 비율 반영 */
       height: auto;
       image-rendering: -webkit-optimize-contrast;
+      transform: translateY(-2px); /* baseline 미세 조정 */
     }
 
     @media print {
       .certificate { border: none; }
     }
+
   </style>
 </head>
 <body>
@@ -157,13 +151,12 @@
     <div class="confirm">위의 내용이 사실과 다름이 없음을 증명합니다.</div>
     <div class="date" id="today"></div>
 
+    <!-- === 회사명 + 대표이사 + 직인 === -->
     <div class="footer">
-      <div class="sign-block">
-        <div class="corp">현대자동차 주식회사</div>
-        <div class="ceo-row">
-          <span>대표이사</span>
-          <span>호세무뇨스</span>
-        </div>
+      <div class="corp">현대자동차 주식회사</div>
+      <div class="sign-row">
+        <span>대표이사</span>
+        <span>호세무뇨스</span>
         <img src="seal.png" class="seal" alt="직인">
       </div>
     </div>
@@ -177,7 +170,7 @@
     document.getElementById('today').innerText = `${y}년 ${m}월 ${d}일`;
     document.getElementById('issue-top').innerText = `발급일자 : ${y}.${m}.${d}`;
 
-    const joinDate = new Date(2022, 8, 4); // 2022-09-04
+    const joinDate = new Date(2022, 8, 4);
     let years = y - joinDate.getFullYear();
     let months = today.getMonth() - joinDate.getMonth();
     if (today.getDate() < joinDate.getDate()) months--;
