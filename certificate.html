@@ -4,51 +4,45 @@
 <meta charset="UTF-8">
 <title>재직증명서</title>
 <style>
-  /* A4 기본 설정 */
   @page { size: A4; margin: 16mm; }
 
   html, body {
     margin: 0;
-    background: #f3f4f7; /* 화면에서만 살짝 회색 배경 */
+    background: #f3f4f7;
     font-family: "Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
     -webkit-print-color-adjust: exact;
   }
 
   .certificate {
     width: 178mm;
-    margin: 18mm auto;              /* 화면용 여백 */
+    margin: 18mm auto;
     padding: 18mm 16mm 30mm;
     background: #fff;
     box-sizing: border-box;
     position: relative;
-    box-shadow: 0 0 8px rgba(0,0,0,.08); /* 화면에서 종이 느낌 */
+    box-shadow: 0 0 8px rgba(0,0,0,.08);
   }
 
-  /* HYUNDAI 로고 */
   .logo {
     position: absolute;
-    top: 14mm;
+    top: 12mm;
     left: 18mm;
     width: 122px;
-    opacity: .95;
   }
 
-  /* 발급일자 */
   .issued-date {
     position: absolute;
-    top: 18mm;
+    top: 14mm;
     right: 20mm;
     font-size: 14px;
     color: #333;
-    letter-spacing: 0.05em;
   }
 
-  /* 제목 */
   .title {
     text-align: center;
     font-size: 27px;
     font-weight: 700;
-    margin: 14mm 0 14mm;
+    margin: 20mm 0 18mm; /* 제목 아래 간격 늘림 */
     letter-spacing: .14em;
     white-space: nowrap;
   }
@@ -57,14 +51,13 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 15px;
-    margin-bottom: 18mm;
+    margin-bottom: 20mm;
   }
   th, td {
     border: 1px solid #dce1ea;
     padding: 9px 11px;
     line-height: 1.55;
     text-align: left;
-    vertical-align: middle;
   }
   th {
     background: #f5f7fa;
@@ -75,9 +68,8 @@
   .confirm {
     text-align: center;
     font-size: 15px;
-    color: #333;
     margin-top: 12mm;
-    margin-bottom: 7mm;
+    margin-bottom: 8mm;
   }
 
   .date {
@@ -87,7 +79,6 @@
     margin-bottom: 22mm;
   }
 
-  /* 서명 영역 */
   .seal-section {
     width: 100%;
     text-align: center;
@@ -95,42 +86,34 @@
   }
 
   .corp {
-    font-size: 12.5px;
+    font-size: 12.8px;
     font-weight: 500;
-    margin-bottom: 1px;
+    margin-bottom: 2px;
   }
 
   .sign-row {
     display: inline-flex;
-    align-items: center;  /* 텍스트와 직인 세로 정렬 */
-    gap: 6px;
+    align-items: center;   /* 글자/직인 수평·수직 맞춤 */
+    gap: 10px;
     font-size: 12.8px;
-    font-weight: 400;
-    white-space: nowrap;
   }
 
   .seal {
-    width: 58px;
+    width: 56px;
     height: auto;
-    transform: translateY(-2px); /* 글자 중앙에 맞게 살짝 위로 */
+    transform: translateY(-1px);
   }
 
-  /* 인쇄 시 최적화 */
   @media print {
-    html, body {
-      background: #fff;
-    }
-    .certificate {
-      margin: 0 auto;     /* @page 마진만 적용되도록 */
-      box-shadow: none;   /* 그림자 제거 */
-    }
+    html, body { background: #fff; }
+    .certificate { margin: 0 auto; box-shadow: none; }
   }
 </style>
 </head>
 <body>
 <div class="certificate">
 
-  <img src="hyundai_logo.png" alt="HYUNDAI" class="logo">
+  <img src="hyundai_logo.png" class="logo">
   <div class="issued-date" id="issue-top"></div>
 
   <div class="title">재&nbsp;직&nbsp;증&nbsp;명&nbsp;서</div>
@@ -155,30 +138,25 @@
     <div class="corp">현대자동차 주식회사</div>
     <div class="sign-row">
       <span>대표이사&nbsp;호세무뇨스</span>
-      <img src="seal.png" class="seal" alt="">
+      <img src="seal.png" class="seal">
     </div>
   </div>
 
 </div>
 
 <script>
-  // 오늘 날짜
   const today = new Date();
   const y = today.getFullYear();
-  const m = String(today.getMonth() + 1).padStart(2, '0');
-  const d = String(today.getDate()).padStart(2, '0');
+  const m = String(today.getMonth()+1).padStart(2,'0');
+  const d = String(today.getDate()).padStart(2,'0');
   document.getElementById('today').innerText = `${y}년 ${m}월 ${d}일`;
   document.getElementById('issue-top').innerText = `발급일자 : ${y}.${m}.${d}`;
 
-  // 재직기간 계산
-  const joinDate = new Date(2022, 8, 4); // 월은 0부터 시작 → 9월 = 8
+  const joinDate = new Date(2022, 8, 4);
   let years = today.getFullYear() - joinDate.getFullYear();
   let months = today.getMonth() - joinDate.getMonth();
   if (today.getDate() < joinDate.getDate()) months -= 1;
-  if (months < 0) {
-    years -= 1;
-    months += 12;
-  }
+  if (months < 0) { years -= 1; months += 12; }
 
   document.getElementById('work-period').innerText =
     `2022년 09월 04일 ~ 현재 (${years}년 ${months}개월)`;
