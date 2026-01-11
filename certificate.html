@@ -15,36 +15,42 @@
   .certificate {
     width: 178mm;
     margin: 0 auto;
-    padding: 18mm 16mm 25mm;
+    padding: 18mm 16mm 20mm;
     background: #fff;
     box-sizing: border-box;
     position: relative;
   }
 
+  /* HYUNDAI 로고 */
   .logo {
     position: absolute;
-    top: 13mm;
+    top: 14mm;
     left: 18mm;
-    width: 120px;
+    width: 122px;
+    opacity: .96;
   }
 
+  /* 발급일자 */
   .issued-date {
     position: absolute;
-    top: 16mm;
+    top: 18mm;
     right: 20mm;
     font-size: 14px;
     color: #333;
+    letter-spacing: 0.05em;
   }
 
+  /* 제목 */
   .title {
     text-align: center;
     font-size: 27px;
     font-weight: 700;
-    margin: 22mm 0 18mm;
+    margin: 14mm 0 14mm;
     letter-spacing: .14em;
     white-space: nowrap;
   }
 
+  /* 테이블 */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -64,48 +70,47 @@
     font-weight: 600;
   }
 
-  td {
-    padding-left: 13px; /* 실제 느낌 */
-  }
-
+  /* 하단문구 */
   .confirm {
     text-align: center;
     font-size: 15px;
-    margin-top: 10mm;
-    margin-bottom: 8mm;
+    color: #333;
+    margin-top: 12mm;
+    margin-bottom: 7mm;
   }
 
   .date {
     text-align: center;
     font-weight: 700;
-    font-size: 15.3px;
+    font-size: 15.5px;
     margin-bottom: 22mm;
   }
 
+  /* === 직인 영역 === */
   .seal-section {
     width: 100%;
     text-align: center;
-    margin-top: 4mm;
+    margin-top: 6mm;
   }
 
   .corp {
-    font-size: 13px;
+    font-size: 13.8px;
     font-weight: 600;
-    margin-bottom: 2px;
+    margin-bottom: 10px; /* 회사명과 대표이사 간격 */
   }
 
   .sign-row {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    font-size: 13px;
+    gap: 16px; /* 이름과 직인 간격 */
+    font-size: 13.6px;
     font-weight: 500;
   }
 
   .seal {
     width: 56px;
     height: auto;
-    transform: translateY(-3px); /* 직인 세로 보정 */
+    transform: translateY(-2px);
   }
 
   @media print {
@@ -116,7 +121,7 @@
 <body>
 <div class="certificate">
 
-  <img src="hyundai_logo.png" class="logo">
+  <img src="hyundai_logo.png" alt="HYUNDAI" class="logo">
   <div class="issued-date" id="issue-top"></div>
 
   <div class="title">재&nbsp;직&nbsp;증&nbsp;명&nbsp;서</div>
@@ -129,7 +134,7 @@
     <tr><th>직위</th><td>연구원</td></tr>
     <tr><th>직무</th><td>차체 구조 설계</td></tr>
     <tr><th>재직상태</th><td>재직</td></tr>
-    <tr><th>입사일</th><td>2022년 09월 04일</td></tr>
+    <tr><th>입사일</th><td id="join-date">2022년 09월 04일</td></tr>
     <tr><th>재직기간</th><td id="work-period"></td></tr>
     <tr><th>용도</th><td>재직 확인용</td></tr>
   </table>
@@ -138,16 +143,16 @@
   <div class="date" id="today"></div>
 
   <div class="seal-section">
-    <div class="corp">현대자동차 주식회사</div>
+    <div class="corp">현대자동차&nbsp;&nbsp;주식회사</div>
     <div class="sign-row">
-      <span>대표이사 호세무뇨스</span>
-      <img src="seal.png" class="seal">
+      <span>대표이사&nbsp;&nbsp;호세무뇨스</span>
+      <img src="seal_transparent.png" class="seal" alt="직인">
     </div>
   </div>
-
 </div>
 
 <script>
+  // 발급일자
   const today = new Date();
   const y = today.getFullYear();
   const m = String(today.getMonth()+1).padStart(2,'0');
@@ -155,12 +160,12 @@
   document.getElementById('today').innerText = `${y}년 ${m}월 ${d}일`;
   document.getElementById('issue-top').innerText = `발급일자 : ${y}.${m}.${d}`;
 
-  const join = new Date(2022, 8, 4);
-  let years = y - join.getFullYear();
-  let months = today.getMonth() - join.getMonth();
-  if (today.getDate() < join.getDate()) months--;
-  if (months < 0) { years--; months += 12; }
-
+  // 재직기간 계산
+  const joinDate = new Date(2022, 8, 4); // 월 0 시작 => 9월 = 8
+  let years = today.getFullYear() - joinDate.getFullYear();
+  let months = today.getMonth() - joinDate.getMonth();
+  if (today.getDate() < joinDate.getDate()) months -= 1;
+  if (months < 0) { years -= 1; months += 12; }
   document.getElementById('work-period').innerText =
     `2022년 09월 04일 ~ 현재 (${years}년 ${months}개월)`;
 </script>
