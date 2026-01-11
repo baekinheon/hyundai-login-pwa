@@ -27,7 +27,7 @@
     top: 14mm;
     left: 18mm;
     width: 122px;
-    opacity: .96;
+    opacity: .95;
   }
 
   /* 발급일자 */
@@ -50,12 +50,11 @@
     white-space: nowrap;
   }
 
-  /* 테이블 */
   table {
     width: 100%;
     border-collapse: collapse;
     font-size: 15px;
-    margin-bottom: 20mm;
+    margin-bottom: 18mm;
   }
   th, td {
     border: 1px solid #dce1ea;
@@ -70,47 +69,46 @@
     font-weight: 600;
   }
 
-  /* 하단문구 */
   .confirm {
     text-align: center;
     font-size: 15px;
     color: #333;
     margin-top: 12mm;
-    margin-bottom: 7mm;
+    margin-bottom: 5mm;
   }
 
   .date {
     text-align: center;
     font-weight: 700;
     font-size: 15.5px;
-    margin-bottom: 22mm;
+    margin-bottom: 18mm;
   }
 
-  /* === 직인 영역 === */
+  /* 서명 영역 */
   .seal-section {
-    width: 100%;
     text-align: center;
-    margin-top: 6mm;
+    margin-top: 18mm; /* ← 수정: 원래 22mm */
+    line-height: 1.4;
   }
 
   .corp {
-    font-size: 13.8px;
+    font-size: 13.2px;
     font-weight: 600;
-    margin-bottom: 10px; /* 회사명과 대표이사 간격 */
+    margin-bottom: 3px;
   }
 
   .sign-row {
     display: inline-flex;
     align-items: center;
-    gap: 16px; /* 이름과 직인 간격 */
-    font-size: 13.6px;
+    gap: 6px;
+    font-size: 12.8px;
     font-weight: 500;
   }
 
   .seal {
-    width: 56px;
+    width: 62px;
     height: auto;
-    transform: translateY(-2px);
+    transform: translateY(1px);
   }
 
   @media print {
@@ -143,16 +141,18 @@
   <div class="date" id="today"></div>
 
   <div class="seal-section">
-    <div class="corp">현대자동차&nbsp;&nbsp;주식회사</div>
+    <div class="corp">현대자동차 주식회사</div>
     <div class="sign-row">
-      <span>대표이사&nbsp;&nbsp;호세무뇨스</span>
+      <span>대표이사</span>
+      <span>호세무뇨스</span>
       <img src="seal.png" class="seal" alt="직인">
     </div>
   </div>
+
 </div>
 
 <script>
-  // 발급일자
+  // 오늘 날짜
   const today = new Date();
   const y = today.getFullYear();
   const m = String(today.getMonth()+1).padStart(2,'0');
@@ -161,11 +161,12 @@
   document.getElementById('issue-top').innerText = `발급일자 : ${y}.${m}.${d}`;
 
   // 재직기간 계산
-  const joinDate = new Date(2022, 8, 4); // 월 0 시작 => 9월 = 8
-  let years = today.getFullYear() - joinDate.getFullYear();
+  const joinDate = new Date(2022, 8, 4); // 월 0 인덱스
+  let years = y - joinDate.getFullYear();
   let months = today.getMonth() - joinDate.getMonth();
-  if (today.getDate() < joinDate.getDate()) months -= 1;
-  if (months < 0) { years -= 1; months += 12; }
+  if (today.getDate() < joinDate.getDate()) months--;
+  if (months < 0) { years--; months += 12; }
+
   document.getElementById('work-period').innerText =
     `2022년 09월 04일 ~ 현재 (${years}년 ${months}개월)`;
 </script>
