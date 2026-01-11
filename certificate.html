@@ -83,29 +83,30 @@
       text-align: center;
       font-weight: 700;
       font-size: 15.5px;
-      margin-bottom: 16mm;
+      margin-bottom: 10mm;       /* 날짜 아래 여백 */
     }
 
-    /* 하단 회사명 + 대표이사 + 직인 정렬/타입 */
+    /* 하단 회사명 + 대표이사 + 직인 */
     .footer {
       text-align: center;
-      line-height: 1.7;
-      margin-top: 2mm;
+      line-height: 1.6;
     }
 
+    /* 회사명: 약간 굵고, 살짝 큰 느낌 */
     .corp {
       font-size: 15px;
-      font-weight: 600;        /* 회사명은 조금 더 진하게 */
-      letter-spacing: 0.12em;  /* 살짝 자간 주기 */
-      margin-bottom: 2mm;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      margin-bottom: 2mm;        /* 바로 아래 대표이사와 살짝만 띄움 */
     }
 
+    /* 대표이사 줄: 회사명보다 반 단계 작고 덜 진하게 */
     .ceo-line {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      font-size: 14px;         /* 한 단계 작게 */
-      font-weight: 500;        /* 회사명보다 살짝 가볍게 */
+      gap: 8px;                  /* 이름과 직인 사이 간격 */
+      font-size: 14px;
+      font-weight: 500;
     }
 
     .ceo-text {
@@ -146,6 +147,7 @@
     <div class="confirm">위의 내용이 사실과 다름이 없음을 증명합니다.</div>
     <div class="date" id="today"></div>
 
+    <!-- 하단 회사명 / 대표이사 / 직인 블록 -->
     <div class="footer">
       <div class="corp">현대자동차 주식회사</div>
       <div class="ceo-line">
