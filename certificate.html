@@ -81,7 +81,7 @@
     text-align: center;
     font-weight: 700;
     font-size: 15.5px;
-    margin-bottom: 22mm; /* 날짜 아래 간격 조금 더 */
+    margin-bottom: 22mm; /* 날짜 아래 간격 */
   }
 
   /* 서명 영역 */
@@ -92,24 +92,23 @@
   }
 
   .corp {
-    font-size: 13.2px;
-    font-weight: 600;
-    margin-bottom: 4px; /* 회사명과 대표이사 라인 사이 살짝 */
+    font-size: 12.5px;
+    font-weight: 500;
+    margin-bottom: 2px; /* 회사명과 대표이사 라인 사이 살짝 */
   }
 
   .sign-row {
     display: inline-flex;
-    align-items: center;
-    gap: 8px;                 /* 대표이사와 직인 사이 간격 */
-    font-size: 13px;
-    font-weight: 500;
+    align-items: flex-end; /* 텍스트와 직인 아래쪽 기준 정렬 */
+    gap: 6px;
+    font-size: 12.8px;
+    font-weight: 400;
     white-space: nowrap;
   }
 
   .seal {
-    width: 70px;              /* 텍스트 대비 직인 크기 살짝 키움 */
+    width: 62px; /* 공문 느낌 크기 */
     height: auto;
-    transform: translateY(-2px); /* baseline 맞추기 위해 살짝 위로 */
   }
 
   @media print {
