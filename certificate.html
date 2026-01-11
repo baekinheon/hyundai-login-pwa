@@ -86,21 +86,26 @@
       margin-bottom: 16mm;
     }
 
-    /* 하단 회사명 + 대표이사 + 직인 정렬 */
+    /* 하단 회사명 + 대표이사 + 직인 정렬/타입 */
     .footer {
       text-align: center;
-      font-weight: 700;
-      line-height: 1.9;
+      line-height: 1.7;
+      margin-top: 2mm;
     }
 
     .corp {
-      margin-bottom: .4em;
+      font-size: 15px;
+      font-weight: 600;        /* 회사명은 조금 더 진하게 */
+      letter-spacing: 0.12em;  /* 살짝 자간 주기 */
+      margin-bottom: 2mm;
     }
 
     .ceo-line {
-      display: inline-flex;       /* 한 덩어리로 중앙 정렬 */
+      display: inline-flex;
       align-items: center;
-      gap: 10px;                  /* 글자와 직인 사이 간격 */
+      gap: 10px;
+      font-size: 14px;         /* 한 단계 작게 */
+      font-weight: 500;        /* 회사명보다 살짝 가볍게 */
     }
 
     .ceo-text {
@@ -108,7 +113,7 @@
     }
 
     .seal {
-      width: 72px;                /* 필요한 만큼만 조정 */
+      width: 72px;
       height: auto;
       image-rendering: -webkit-optimize-contrast;
     }
