@@ -4,21 +4,24 @@
 <meta charset="UTF-8">
 <title>재직증명서</title>
 <style>
+  /* A4 기본 설정 */
   @page { size: A4; margin: 16mm; }
+
   html, body {
     margin: 0;
-    background: #fff;
+    background: #f3f4f7; /* 화면에서만 살짝 회색 배경 */
     font-family: "Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
     -webkit-print-color-adjust: exact;
   }
 
   .certificate {
     width: 178mm;
-    margin: 0 auto;
-    padding: 18mm 16mm 30mm; /* 하단 여백 넉넉히 */
+    margin: 18mm auto;              /* 화면용 여백 */
+    padding: 18mm 16mm 30mm;
     background: #fff;
     box-sizing: border-box;
     position: relative;
+    box-shadow: 0 0 8px rgba(0,0,0,.08); /* 화면에서 종이 느낌 */
   }
 
   /* HYUNDAI 로고 */
@@ -74,14 +77,14 @@
     font-size: 15px;
     color: #333;
     margin-top: 12mm;
-    margin-bottom: 7mm; /* 문구와 날짜 사이 여유 */
+    margin-bottom: 7mm;
   }
 
   .date {
     text-align: center;
     font-weight: 700;
     font-size: 15.5px;
-    margin-bottom: 22mm; /* 날짜 아래 간격 */
+    margin-bottom: 22mm;
   }
 
   /* 서명 영역 */
@@ -94,12 +97,12 @@
   .corp {
     font-size: 12.5px;
     font-weight: 500;
-    margin-bottom: 2px; /* 회사명과 대표이사 라인 사이 살짝 */
+    margin-bottom: 1px;
   }
 
   .sign-row {
     display: inline-flex;
-    align-items: center;  /* 텍스트와 직인 세로 가운데 정렬 */
+    align-items: center;  /* 텍스트와 직인 세로 정렬 */
     gap: 6px;
     font-size: 12.8px;
     font-weight: 400;
@@ -107,12 +110,20 @@
   }
 
   .seal {
-    width: 58px;   /* 공문 느낌 직인 크기 */
+    width: 58px;
     height: auto;
+    transform: translateY(-2px); /* 글자 중앙에 맞게 살짝 위로 */
   }
 
+  /* 인쇄 시 최적화 */
   @media print {
-    .certificate { border: none; }
+    html, body {
+      background: #fff;
+    }
+    .certificate {
+      margin: 0 auto;     /* @page 마진만 적용되도록 */
+      box-shadow: none;   /* 그림자 제거 */
+    }
   }
 </style>
 </head>
