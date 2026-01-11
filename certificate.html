@@ -99,7 +99,7 @@
   .sign-row {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     font-size: 12.8px;
     font-weight: 500;
   }
@@ -131,7 +131,7 @@
     <tr><th>직위</th><td>연구원</td></tr>
     <tr><th>직무</th><td>차체 구조 설계</td></tr>
     <tr><th>재직상태</th><td>재직</td></tr>
-    <tr><th>입사일</th><td id="join-date">2022년 09월 04일</td></tr>
+    <tr><th>입사일</th><td>2022년 09월 04일</td></tr>
     <tr><th>재직기간</th><td id="work-period"></td></tr>
     <tr><th>용도</th><td>재직 확인용</td></tr>
   </table>
@@ -144,7 +144,7 @@
     <div class="sign-row">
       <span>대표이사</span>
       <span>호세무뇨스</span>
-      <img src="seal_transparent.png" class="seal" alt="직인">
+      <img src="seal.png" class="seal" alt="">
     </div>
   </div>
 
@@ -160,14 +160,14 @@
   document.getElementById('issue-top').innerText = `발급일자 : ${y}.${m}.${d}`;
 
   // 재직기간 계산
-  const joinDate = new Date(2022, 8, 4); // 월은 0부터 시작 → 9월=8
+  const joinDate = new Date(2022, 8, 4); // 월=0 시작이므로 8=9월
   let years = today.getFullYear() - joinDate.getFullYear();
   let months = today.getMonth() - joinDate.getMonth();
-  if (today.getDate() < joinDate.getDate()) months -= 1;
-  if (months < 0) { years -= 1; months += 12; }
+  if (today.getDate() < joinDate.getDate()) months--;
+  if (months < 0) { years--; months += 12; }
+
   document.getElementById('work-period').innerText =
     `2022년 09월 04일 ~ 현재 (${years}년 ${months}개월)`;
-
 </script>
 
 </body>
