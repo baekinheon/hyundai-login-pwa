@@ -86,36 +86,51 @@
       margin-bottom: 9mm;
     }
 
-    /* ===== 하단 회사명 + 대표이사 (가운데) ===== */
+    /* ===== 하단 실제 재직증명서 스타일 서명 블록 ===== */
     .footer {
-      position: relative;      /* 도장 위치 기준 */
       text-align: center;
-      line-height: 1.4;
       margin-top: 0;
+    }
+
+    .sign-block {
+      display: inline-block;
+      text-align: left;       /* 블록 안 글자는 좌정렬 */
+      position: relative;
+      padding-right: 70px;    /* 직인 들어갈 자리 확보 */
+      line-height: 1.6;
     }
 
     .corp {
       font-size: 14px;
       font-weight: 600;
       letter-spacing: 0.06em;
-      margin-bottom: 0;
+      margin-bottom: 4px;     /* 회사명 ↔ 대표이사 간격 */
     }
 
-    .ceo-text {
-      display: inline-block;
-      font-size: 13.5px;
+    .ceo-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.8px;
       font-weight: 500;
-      letter-spacing: 0.02em;
-      margin-top: 2px;
     }
 
-    /* ===== 도장: 오른쪽으로 분리 배치 ===== */
+    .ceo-label {
+      white-space: nowrap;
+    }
+
+    .ceo-name {
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    /* 직인: 서명 블록 안에서 오른쪽에 붙여서 세로 중앙 정렬 */
     .seal {
       position: absolute;
-      right: 18mm;             /* ← 도장 가로 위치 (원하면 숫자만 조절) */
-      top: 0;                  /* footer 윗줄 기준 */
-      transform: translateY(25%); /* 세로 위치 미세 조정 */
-      width: 72px;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 56px;          /* 크기 줄여서 글자 대비 자연스럽게 */
       height: auto;
       image-rendering: -webkit-optimize-contrast;
     }
@@ -148,11 +163,16 @@
     <div class="confirm">위의 내용이 사실과 다름이 없음을 증명합니다.</div>
     <div class="date" id="today"></div>
 
-    <!-- 회사명/대표이사 가운데, 직인은 오른쪽으로 분리 -->
+    <!-- 실제 양식처럼 회사명/대표이사 + 오른쪽 직인 -->
     <div class="footer">
-      <div class="corp">현대자동차 주식회사</div>
-      <div class="ceo-text">대표이사&nbsp;&nbsp;호세무뇨스</div>
-      <img src="seal.png" class="seal" alt="직인">
+      <div class="sign-block">
+        <div class="corp">현대자동차 주식회사</div>
+        <div class="ceo-row">
+          <span class="ceo-label">대표이사</span>
+          <span class="ceo-name">호세무뇨스</span>
+        </div>
+        <img src="seal.png" class="seal" alt="직인">
+      </div>
     </div>
   </div>
 
