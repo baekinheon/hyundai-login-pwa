@@ -5,34 +5,32 @@
 <title>재직증명서</title>
 <style>
   @page { size: A4; margin: 16mm; }
-
   html, body {
     margin: 0;
-    background: #f3f4f7;
+    background: #fff;
     font-family: "Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
     -webkit-print-color-adjust: exact;
   }
 
   .certificate {
     width: 178mm;
-    margin: 18mm auto;
-    padding: 18mm 16mm 30mm;
+    margin: 0 auto;
+    padding: 18mm 16mm 25mm;
     background: #fff;
     box-sizing: border-box;
     position: relative;
-    box-shadow: 0 0 8px rgba(0,0,0,.08);
   }
 
   .logo {
     position: absolute;
-    top: 12mm;
+    top: 13mm;
     left: 18mm;
-    width: 122px;
+    width: 120px;
   }
 
   .issued-date {
     position: absolute;
-    top: 14mm;
+    top: 16mm;
     right: 20mm;
     font-size: 14px;
     color: #333;
@@ -42,7 +40,7 @@
     text-align: center;
     font-size: 27px;
     font-weight: 700;
-    margin: 20mm 0 18mm; /* 제목 아래 간격 늘림 */
+    margin: 22mm 0 18mm;
     letter-spacing: .14em;
     white-space: nowrap;
   }
@@ -58,6 +56,7 @@
     padding: 9px 11px;
     line-height: 1.55;
     text-align: left;
+    vertical-align: middle;
   }
   th {
     background: #f5f7fa;
@@ -65,48 +64,52 @@
     font-weight: 600;
   }
 
+  td {
+    padding-left: 13px; /* 실제 느낌 */
+  }
+
   .confirm {
     text-align: center;
     font-size: 15px;
-    margin-top: 12mm;
+    margin-top: 10mm;
     margin-bottom: 8mm;
   }
 
   .date {
     text-align: center;
     font-weight: 700;
-    font-size: 15.5px;
+    font-size: 15.3px;
     margin-bottom: 22mm;
   }
 
   .seal-section {
     width: 100%;
     text-align: center;
-    margin-top: 6mm;
+    margin-top: 4mm;
   }
 
   .corp {
-    font-size: 12.8px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
     margin-bottom: 2px;
   }
 
   .sign-row {
     display: inline-flex;
-    align-items: center;   /* 글자/직인 수평·수직 맞춤 */
+    align-items: center;
     gap: 10px;
-    font-size: 12.8px;
+    font-size: 13px;
+    font-weight: 500;
   }
 
   .seal {
     width: 56px;
     height: auto;
-    transform: translateY(-1px);
+    transform: translateY(-3px); /* 직인 세로 보정 */
   }
 
   @media print {
-    html, body { background: #fff; }
-    .certificate { margin: 0 auto; box-shadow: none; }
+    .certificate { border: none; }
   }
 </style>
 </head>
@@ -137,7 +140,7 @@
   <div class="seal-section">
     <div class="corp">현대자동차 주식회사</div>
     <div class="sign-row">
-      <span>대표이사&nbsp;호세무뇨스</span>
+      <span>대표이사 호세무뇨스</span>
       <img src="seal.png" class="seal">
     </div>
   </div>
@@ -152,11 +155,11 @@
   document.getElementById('today').innerText = `${y}년 ${m}월 ${d}일`;
   document.getElementById('issue-top').innerText = `발급일자 : ${y}.${m}.${d}`;
 
-  const joinDate = new Date(2022, 8, 4);
-  let years = today.getFullYear() - joinDate.getFullYear();
-  let months = today.getMonth() - joinDate.getMonth();
-  if (today.getDate() < joinDate.getDate()) months -= 1;
-  if (months < 0) { years -= 1; months += 12; }
+  const join = new Date(2022, 8, 4);
+  let years = y - join.getFullYear();
+  let months = today.getMonth() - join.getMonth();
+  if (today.getDate() < join.getDate()) months--;
+  if (months < 0) { years--; months += 12; }
 
   document.getElementById('work-period').innerText =
     `2022년 09월 04일 ~ 현재 (${years}년 ${months}개월)`;
